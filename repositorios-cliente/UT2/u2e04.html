@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 4</title>
+  </head>
+  <body>
+    <h1>Ejercicio 4</h1>
+    <br />
+    <script>
+      do {
+        let figura = prompt(
+          "¿Que figura desea calcular? Opciones:S->Cuadrado o T->Triangulo o C->Circulo",
+          ""
+        );
+
+        figura.tolowerCase;
+        alert(figura);
+        if (
+          figura == "T" ||
+          figura == "S" ||
+          figura == "C" ||
+          figura == "t" ||
+          figura == "s" ||
+          figura == "s"
+        ) {
+          alert("Correcto!" + figura);
+        } else {
+          alert("Incorrecto introduce un valor valido(S, T o C)" + figura);
+        }
+      } while (figura == "T" || figura == "S" || figura == "C");
+
+      let mensaje =
+        edad > 60
+          ? edad + " Jubilado<br>"
+          : edad >= 27
+          ? edad + " Adulto<br>"
+          : edad >= 13
+          ? edad + " Joven<br>"
+          : edad + " Niño<br>";
+      document.write(mensaje);
+    </script>
+
+    <br />
+  </body>
+</html>
