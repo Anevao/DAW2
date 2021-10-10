@@ -14,20 +14,19 @@
           "¿Que figura desea calcular? Opciones:S->Cuadrado o T->Triangulo o C->Circulo",
           ""
         );
-        figura.toString();
-        figura.toUpperCase();
         alert(figura);
         if (
           figura == "T" ||
           figura == "S" ||
-          figura == "C" ||
-          figura == "t" ||
-          figura == "s" ||
-          figura == "s"
+          figura == "C"
+          // figura == "t" ||
+          //figura == "s" ||
+          //figura == "s"
         ) {
           alert("Correcto!" + figura);
         } else {
           alert("Incorrecto introduce un valor valido(S, T o C)" + figura);
+          debugger;
         }
       } while (figura != "T" || figura != "S" || figura != "C");
 
