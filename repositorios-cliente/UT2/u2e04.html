@@ -8,13 +8,14 @@
     <h1>Ejercicio 4</h1>
     <br />
     <script>
+      let figura;
       do {
-        let figura = prompt(
+        figura = prompt(
           "¿Que figura desea calcular? Opciones:S->Cuadrado o T->Triangulo o C->Circulo",
           ""
         );
-
-        figura.tolowerCase;
+        figura.toString();
+        figura.toUpperCase();
         alert(figura);
         if (
           figura == "T" ||
@@ -28,16 +29,16 @@
         } else {
           alert("Incorrecto introduce un valor valido(S, T o C)" + figura);
         }
-      } while (figura == "T" || figura == "S" || figura == "C");
+      } while (figura != "T" || figura != "S" || figura != "C");
 
       let mensaje =
-        edad > 60
-          ? edad + " Jubilado<br>"
-          : edad >= 27
-          ? edad + " Adulto<br>"
-          : edad >= 13
-          ? edad + " Joven<br>"
-          : edad + " Niño<br>";
+        figura == "T"
+          ? figura + " triangulo<br>"
+          : figura == "C"
+          ? figura + " circulo<br>"
+          : figura == "S"
+          ? figura + " cuadrado<br>"
+          : figura + " mal controlado<br>";
       document.write(mensaje);
     </script>
 
