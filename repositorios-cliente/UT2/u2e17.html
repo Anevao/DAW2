@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 17</title>
+  </head>
+  <body>
+    <h1>Ejercicio 17</h1>
+    <br />
+    <script>
+      let n = +prompt("Introduce un numero para pasarlo a binario", "");
+
+      while (!(n > 0))
+        n = +prompt(
+          "Introduce un numero para pasarlo a binario",
+          "tiene que ser un numero "
+        );
+
+      n = Math.trunc(n);
+
+      document.write(binario(n));
+
+      function binario(numero) {
+        let bin = "";
+        while (numero >= 1) {
+          if (numero % 2 == 0) bin = 0 + bin;
+          else {
+            bin = 1 + bin;
+          }
+          numero = numero / 2;
+          numero = Math.trunc(numero);
+        }
+        return bin;
+      }
+    </script>
+
+    <br />
+  </body>
+</html>
