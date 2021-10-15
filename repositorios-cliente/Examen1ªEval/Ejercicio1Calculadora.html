@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 1 Examen 1ª Eval</title>
+  </head>
+  <body>
+    <h1>Ejercicio 1 Examen 1ª Eval</h1>
+    <br />
+    <script>
+      let op1;
+      let op2;
+      let resultado;
+      let calculadora;
+
+      do {
+        calculadora = prompt(
+          "CALCULADORA ONLINE \n¿Que operación desea realizar? \nOpciones disponibles: +, -, *, /, %, ** o terminar",
+          ""
+        );
+        if (calculadora == null)
+          //controlamos que pulse cancel
+
+          switch (calculadora) {
+            case "+":
+              alert(suma());
+              break;
+            case "-":
+              alert(resta());
+              break;
+            case "*":
+              alert(multiplicacion());
+              break;
+            case "/":
+              alert(division());
+              break;
+            case "%":
+              alert(resto());
+              break;
+            case "**":
+              alert(cuadrado());
+              break;
+          }
+      } while (calculadora != "terminar");
+      alert("PROGRAMA FINALIZADO, GRACIAS");
+      function peticionOperador() {
+        let op = +prompt("Introduce el operando", "");
+        while (op == NaN) {
+          base = +prompt("Introduce un operando valido", "introduce un numero");
+        }
+        return op;
+      }
+      function suma() {
+        op1 = peticionOperador();
+        op2 = peticionOperador();
+        return op1 + " + " + op2 + " = " + (op1 + op2);
+      }
+      function resta() {
+        op1 = peticionOperador();
+        op2 = peticionOperador();
+        return op1 + " - " + op2 + " = " + (op1 - op2);
+      }
+      function multiplicacion() {
+        op1 = peticionOperador();
+        op2 = peticionOperador();
+        return op1 + " * " + op2 + " = " + op1 * op2;
+      }
+      function division() {
+        op1 = peticionOperador();
+        op2 = peticionOperador();
+        return op1 + " / " + op2 + " = " + op1 / op2;
+      }
+      function resto() {
+        op1 = peticionOperador();
+        op2 = peticionOperador();
+        return op1 + " % " + op2 + " = " + (op1 % op2);
+      }
+      function cuadrado() {
+        op1 = peticionOperador();
+        return op1 + " ^2 = " + op1 * op1;
+      }
+    </script>
+
+    <br />
+  </body>
+</html>
