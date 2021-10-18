@@ -9,7 +9,8 @@
     <br />
     <script>
       let matriculado = "";
-      let nAlumnos = 20; //esta variable se puede modificar segun el tamaño de la clase
+      const nAlumnos = 20; //esta variable se puede modificar segun el tamaño de la clase
+      const nModulos = 5;
       let mensaje;
       let nota;
 
@@ -33,7 +34,7 @@
 
         if (matriculado == "si") {
           mensaje = "Alumno" + i + " esta matriculado, sus notas son ";
-          for (j = 1; j <= 5; j++) {
+          for (j = 1; j <= nModulos; j++) {
             do {
               nota = +prompt(
                 "Ingresa un la nota del modulo" +
