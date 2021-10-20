@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 16</title>
+  </head>
+  <body>
+    <h1>Ejercicio 16</h1>
+    <br />
+    <script>
+      let n = +prompt(
+        "Introduce hasta que posicion deseas calcular la serie de fibonacci",
+        ""
+      );
+
+      while (!(n > 1))
+        n = +prompt(
+          "Introduce hasta que posicion deseas calcular la serie de fibonacci",
+          "tiene que ser un numero positivo >1"
+        );
+
+      n = Math.trunc(n); //quita los decimales por si hay algun espabilado
+
+      fibolter(n);
+
+      function fibolter(numero) {
+        let n1 = 0;
+        let n2 = 1;
+        document.write(n1 + ", " + n2);
+        for (i = 0; i <= numero - 2; i++) {
+          n2 = n1 + n2;
+          n1 = n2 - n1;
+          document.write(", " + n2);
+        }
+        return factorial;
+      }
+    </script>
+
+    <br />
+  </body>
+</html>

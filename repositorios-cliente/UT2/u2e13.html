@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 13</title>
+  </head>
+  <body>
+    <h1>Ejercicio 13</h1>
+    <br />
+    <script>
+      function contarBs(cadena) {
+        let contador = 0; //las variables dentro de funciones son LOCALES acuerdate melón
+        for (i = 0; i < cadena.length; i++) {
+          if (cadena[i] == "B") contador++;
+        }
+        return contador;
+      }
+      function contarCaracter(cadena, caracter) {
+        let contador = 0;
+        for (i = 0; i < cadena.length; i++) {
+          if (cadena[i] == caracter) contador++;
+        }
+        return contador;
+      }
+      let mensaje = "BaobaB";
+      let char = "b";
+      document.write(
+        "El numero de B de " + mensaje + " es " + contarBs(mensaje) + "<br>"
+      );
+      document.write(
+        "El numero de a de " +
+          mensaje +
+          " es " +
+          contarCaracter(mensaje, char) +
+          "<br>"
+      );
+    </script>
+
+    <br />
+  </body>
+</html>

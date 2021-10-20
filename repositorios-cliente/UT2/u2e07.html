@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 7</title>
+  </head>
+  <body>
+    <h1>Ejercicio 7</h1>
+    <br />
+    <script>
+      let suarez = prompt(
+        "¿Cual fue el primer presidente de la democracia española?",
+        ""
+      );
+      if (suarez != null) suarez = suarez.toLowerCase();
+      while (suarez != "suarez") {
+        suarez = prompt(
+          "ERROR. Intentelo de nuevo. ¿Cual fue el primer presidente de la democracia española?",
+          ""
+        );
+        if (suarez != null) suarez = suarez.toLowerCase();
+      }
+
+      //document.write();
+    </script>
+
+    <br />
+  </body>
+</html>

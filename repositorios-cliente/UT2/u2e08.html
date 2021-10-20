@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 8</title>
+  </head>
+  <body>
+    <h1>Ejercicio 8</h1>
+    <br />
+    <script>
+      let suarez = prompt(
+        "¿Cual fue el primer presidente de la democracia española?",
+        ""
+      );
+      debugger;
+      if (suarez != null) suarez = suarez.toLowerCase();
+      while (suarez != "adolfo suarez") {
+        if (suarez == "adolfo") {
+          suarez = prompt(
+            "Le falta el apellido. ¿Cual fue el primer presidente de la democracia española?",
+            ""
+          );
+        } else if (suarez == "suarez") {
+          suarez = prompt(
+            "Le falta el nombre. ¿Cual fue el primer presidente de la democracia española?",
+            ""
+          );
+        } else {
+          suarez = prompt(
+            "ERROR. Intentelo de nuevo. ¿Cual fue el primer presidente de la democracia española?",
+            ""
+          );
+        }
+        if (suarez != null) suarez = suarez.toLowerCase();
+      }
+
+      //document.write();
+    </script>
+
+    <br />
+  </body>
+</html>

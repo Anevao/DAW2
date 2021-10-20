@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 15</title>
+  </head>
+  <body>
+    <h1>Ejercicio 15</h1>
+    <br />
+    <script>
+      let n = +prompt("Introduce un numero positivo", "");
+
+      while (!(n > 0))
+        n = +prompt("Introduce un numero positivo", "el anterior estaba mal");
+
+      n = Math.trunc(n); //quita los decimales por si hay algun espabilado
+
+      document.write("El numero factorial de " + n + " es " + factorialIter(n));
+
+      function factorialIter(numero) {
+        let factorial = 1;
+        for (i = numero; i > 1; i--) {
+          //con == no funcionan los for no se porque! acuerdate!
+          factorial = factorial * i;
+        }
+        return factorial;
+      }
+    </script>
+
+    <br />
+  </body>
+</html>

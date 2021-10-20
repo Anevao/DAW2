@@ -8,37 +8,109 @@
     <h1>Ejercicio 4</h1>
     <br />
     <script>
+      let area = 0;
+      let perimetro = 0;
+      let figura = "";
+      let mensaje = "";
       do {
-        let figura = prompt(
+        figura = prompt(
           "¿Que figura desea calcular? Opciones:S->Cuadrado o T->Triangulo o C->Circulo",
           ""
         );
-
-        figura.tolowerCase;
-        alert(figura);
-        if (
-          figura == "T" ||
-          figura == "S" ||
-          figura == "C" ||
-          figura == "t" ||
-          figura == "s" ||
-          figura == "s"
-        ) {
-          alert("Correcto!" + figura);
-        } else {
-          alert("Incorrecto introduce un valor valido(S, T o C)" + figura);
+        /*
+        if (figura != null);
+        {
+          figura.toUpperCase();//preguntar pq no funcina esto
         }
-      } while (figura == "T" || figura == "S" || figura == "C");
-
-      let mensaje =
-        edad > 60
-          ? edad + " Jubilado<br>"
-          : edad >= 27
-          ? edad + " Adulto<br>"
-          : edad >= 13
-          ? edad + " Joven<br>"
-          : edad + " Niño<br>";
-      document.write(mensaje);
+        */
+      } while (
+        figura != "T" &&
+        figura != "S" &&
+        figura != "C" &&
+        figura != "t" &&
+        figura != "s" &&
+        figura != "c"
+      );
+      switch (figura) {
+        case "S":
+        case "s":
+          mensaje = cuadrado();
+          document.write(mensaje);
+          break;
+        case "T":
+        case "t":
+          mensaje = triangulo();
+          document.write(mensaje);
+          break;
+        case "c":
+        case "C":
+          //mensaje = circulo();
+          document.write(circulo());
+          break;
+      }
+      function cuadrado() {
+        let base = prompt("Introduce el tamaño del lado", "");
+        while (base == NaN || base < 0) {
+          base = prompt(
+            "Introduce el tamaño del lado",
+            "introduce un numero valido"
+          );
+        }
+        area = base * base;
+        perimetro = base * 4;
+        return (
+          "el area de un cuadrado con los lados de " +
+          base +
+          " es " +
+          area +
+          " y su perimetro es " +
+          perimetro
+        );
+      }
+      function triangulo() {
+        let base = +prompt("Introduce la base", "");
+        while (base == NaN || base < 0) {
+          base = +prompt("Introduce la base", "introduce un numero valido");
+        }
+        let altura = +prompt("Introduce la altura", "");
+        while (altura == NaN || altura < 0) {
+          altura = +prompt("Introduce la altura", "introduce un numero valido");
+        }
+        area = (base * altura) / 2;
+        let hipotenusa = Math.sqrt(base * base + altura * altura);
+        //hipotenusa = Math.round(hipotenusa);
+        perimetro = hipotenusa + base + altura; //base + altura +
+        alert(perimetro);
+        return (
+          "el area de un triangulo rectangulo con la base de " +
+          base +
+          " y la altura de " +
+          altura +
+          " es " +
+          area +
+          " y su perimetro es " +
+          perimetro
+        );
+      }
+      function circulo() {
+        let radio = prompt("Introduce el radio del circulo", "");
+        while (radio == NaN || radio < 0) {
+          radio = prompt(
+            "Introduce el radio del circulo",
+            "introduce un numero valido"
+          );
+        }
+        area = 3.1416 * radio * radio;
+        perimetro = 2 * radio * 3.1416;
+        return (
+          "el area de un circulo con radio de " +
+          radio +
+          " es " +
+          area +
+          " y su perimetro es " +
+          perimetro
+        );
+      }
     </script>
 
     <br />
