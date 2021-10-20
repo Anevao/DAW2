@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 1 Examen 1ª Eval</title>
+  </head>
+  <body>
+    <h1>Ejercicio 1 Examen 1ª Eval</h1>
+    <br />
+    <script>
+      //variables de las funciones LOCALES
+
+      let op1;
+      let op2;
+      let resultado;
+      let operacion;
+      //nombre de la varaible operacion
+      while (operacion != "terminar") {
+        operacion = prompt(
+          "CALCULADORA ONLINE \n¿Que operación desea realizar? \nOpciones disponibles: +, -, *, /, %, ** o terminar",
+          ""
+        );
+        if (
+          operacion != "terminar" &&
+          (operacion == "+" ||
+            operacion == "-" ||
+            operacion == "*" ||
+            operacion == "/" ||
+            operacion == "%" ||
+            operacion == "**")
+        ) {
+          op1 = +prompt("Introduce el operando 1", "");
+          while (!Number(op1)) {
+            op1 = +prompt(
+              "Introduce un operando 1 valido",
+              "introduce un numero"
+            );
+          }
+          op2 = +prompt("Introduce el operando 2", "");
+          while (isNaN(op2)) {
+            op2 = +prompt(
+              "Introduce un operando 2 valido",
+              "introduce un numero"
+            );
+          }
+        }
+        switch (operacion) {
+          case "+":
+            alert(`${op1} + ${op2} = ${suma(op1, op2)}`);
+            break;
+          case "-":
+            alert(op1 + "-" + op2 + "=" + resta(op1, op2));
+            break;
+          case "*":
+            alert(op1 + "*" + op2 + "=" + multiplicacion(op1, op2));
+            break;
+          case "/":
+            alert(op1 + "/" + op2 + "=" + division(op1, op2));
+            break;
+          case "%":
+            alert(op1 + "%" + op2 + "=" + resto(op1, op2));
+            break;
+          case "**":
+            alert(op1 + "**" + op2 + "=" + exponenciacion(op1, op2));
+            break;
+        }
+      }
+      alert("PROGRAMA FINALIZADO, GRACIAS");
+      function peticionOperador() {
+        let op = +prompt("Introduce el operando", "");
+        while (op == NaN) {
+          op = +prompt("Introduce un operando valido", "introduce un numero");
+        }
+        return op;
+      }
+      function suma(suma1, suma2) {
+        return suma1 + suma2;
+      }
+      function resta(resta1, resta2) {
+        return resta1 - resta2;
+      }
+      function multiplicacion(mult1, mult2) {
+        return mult1 * mult2;
+      }
+      function division(div1, div2) {
+        return div1 / div2;
+      }
+      function resto(resto1, resto2) {
+        return resto1 % resto2;
+      }
+      function exponenciacion(exp1, exp2) {
+        return exp1 ** exp2;
+      }
+    </script>
+
+    <br />
+  </body>
+</html>

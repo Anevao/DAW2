@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 2 Examen 1ª Eval</title>
+  </head>
+  <body>
+    <h1>Ejercicio 2 Examen 1ª Eval</h1>
+    <br />
+    <script>
+      let matriculado = "";
+      const nAlumnos = 20; //esta variable se puede modificar segun el tamaño de la clase
+      const nModulos = 5;
+      let mensaje;
+      let nota;
+
+      document.write("Listado de las calificaciones de los alumnos: <br>");
+
+      for (i = 1; i <= nAlumnos; i++) {
+        do {
+          matriculado = prompt(
+            "Alumno" +
+              i +
+              " \n¿Esta matriculado el alumno? \nOpciones disponibles: si, no, ultimo alumno",
+            ""
+          );
+          if (matriculado == null) {
+          } //controlamos que no salga al meter cancel
+        } while (
+          matriculado != "si" &&
+          matriculado != "no" &&
+          matriculado != "ultimo alumno"
+        );
+
+        if (matriculado == "si") {
+          mensaje = "Alumno" + i + " esta matriculado, sus notas son ";
+          for (j = 1; j <= nModulos; j++) {
+            do {
+              nota = +prompt(
+                "Ingresa un la nota del modulo" +
+                  j +
+                  " tiene que ser de 0 a 10",
+                5
+              );
+            } while (nota < 0 || nota > 10);
+            mensaje = mensaje + nota + " ";
+          }
+          document.write(mensaje + "<br>");
+          mensaje = "";
+        } else if (matriculado == "no") {
+          //pasamos de largo porque no esta matriculado
+          mensaje =
+            "alumno" + i + " ha cancelado su matricula y no esta evaluado ";
+          document.write(mensaje + "<br>");
+          mensaje = "";
+        } else {
+          break; //salimos del for ya que es el ultimo alumno
+        }
+      }
+    </script>
+
+    <br />
+  </body>
+</html>
