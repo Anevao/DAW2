@@ -14,5 +14,5 @@ for (let i = 2; i <= n; i++) { // por cada i...
 let num;
 
 do {
-  num = prompt("Ingresa un  número mayor a 100", 0);
+  num = prompt("Ingresa un número mayor a 100", 0);
 } while (num <= 100 && num);
