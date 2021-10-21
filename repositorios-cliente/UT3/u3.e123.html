@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.	Crea un literal de objetos ordenador, que almacene el procesador
+         inicializado a i7, la memoria RAM, con valor inicial 12 GB y el
+         disco duro con valor inicial 1TB.
+        */
+      let ordenador = {
+        procesador: "i7",
+        "memoria RAM": "12 GB",
+        "disco duro": "1TB",
+      };
+      /*
+      2.Añade al objeto ordenador creado en la anterior cuestión, la
+       propiedad SSD con valor inicial 512 GB y elimina la propiedad disco
+        duro. Haz las dos operaciones dos veces: con notación . y con
+         notación [].
+      */
+      ordenador.ssd = "512 GB";
+      //esta no se podria borrar con el ordenador.disco duro porke son 2 palabras
+      delete ordenador["disco duro"];
+      delete ordenador["ssd"];
+      //esta en cambio se puede asi tb NOTA camel case variables asi discoDuro
+      ordenador["ssd"] = "512GB";
+      //3.	Muestra por consola todas las propiedades del objeto ordenador.
+      // Hazlo de dos formas: utilizando un método de la clase Object y un
+      // bucle for..in.
+      for (let datos in ordenador) {
+        alert(ordenador[datos]);
+      }
+    </script>
+  </body>
+</html>

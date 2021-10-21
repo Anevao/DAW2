@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicios objetos</title>
+  </head>
+  <body>
+    <script>
+      //creamos un constructor, reconocemos el constructor por la 1ª mayus
+      function Calculator() {
+        //al ser un constructor este this. le añade una funcion al objeto
+        this.read = function () {
+          this.a = +prompt("a?", 0);
+          this.b = +prompt("b?", 0);
+        };
+        this.sum = function () {
+          return this.a + this.b;
+        }; // le acabamos de meter 3funciones osea cuando llamemos a new Calculator creara un objeto de 3 funciones
+        this.mul = function () {
+          return this.a * this.b;
+        };
+      } //creas el objeto calculator y llmas primero a la funcion read y luego suma y resta
+      let calculator = new Calculator();
+      calculator.read();
+      alert("Sum=" + calculator.sum());
+      alert("Mul=" + calculator.mul());
+      /*
+Crear una función constructor
+Accumulator(startingValue). El objeto que crea debería: Almacene el “valor
+actual” en la propiedad value. El valor inicial se establece en el argumento del
+constructor startingValue. El método read() debe usar prompt para leer un nuevo
+número y agregarlo a value. En otras palabras, la propiedad value es la suma de
+todos los valores ingresados por el usuario con el valor inicial startingValue.
+*/
+      function Accumulator(start) {
+        this.value = start;
+        this.read = function () {
+          let value1 = +prompt("sumar valor", 0);
+          this.value += value1;
+        };
+      }
+      let accumulator = new Accumulator(1);
+      accumulator.read();
+      accumulator.read();
+      alert(accumulator.value);
+    </script>
+  </body>
+</html>
