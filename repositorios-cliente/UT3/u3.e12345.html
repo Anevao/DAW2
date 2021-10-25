@@ -37,6 +37,31 @@
         //alert(ordenador[datos]);
         alert(datos);
       }
+      /*
+Indica el resultado de evaluar la siguientes expresiones, después de haber ejecutado las
+siguientes sentencias: 
+let pan = { 
+    blanco:6, 
+    deAjo:5, 
+    deSemillas:{ 
+        deAvena:3, 
+        deLino:6} 
+}; 
+delete pan.deAjo; 
+pan.deQueso = 3;
+
+a)pan["sinSemillas"]["deLino"]; 
+-Uncaught TypeError: Cannot read properties of undefined (reading 'deLino') 
+at <anonymous>:11:19 
+b)pan.deAjo; 
+-undefined 
+c)pan.deSemillas; 
+-{deAvena: 3, deLino: 6} 
+d)pan.deSemillas["deLino"]; 
+-6  
+e)pan.deQueso; 
+-3 
+      */
       //5.	Crea la clase Animal con la propiedad nombre y el método hablar() que simplemente devolverá el saludo “Rrrrrr"
       function Animal(nombre) {
         this.nombre = nombre;
