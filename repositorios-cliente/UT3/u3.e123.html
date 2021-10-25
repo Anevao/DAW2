@@ -34,7 +34,15 @@
       // Hazlo de dos formas: utilizando un método de la clase Object y un
       // bucle for..in.
       for (let datos in ordenador) {
-        alert(ordenador[datos]);
+        //alert(ordenador[datos]);
+        alert(datos);
+      }
+      //5.	Crea la clase Animal con la propiedad nombre y el método hablar() que simplemente devolverá el saludo “Rrrrrr"
+      function Animal(nombre) {
+        this.nombre = nombre;
+        this.hablar = function () {
+          return "Rrrrrrrr";
+        };
       }
     </script>
   </body>
