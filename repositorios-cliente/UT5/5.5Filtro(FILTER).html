@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function filterRange(arr, a, b) {
+        return arr.filter((item) => a <= item && item <= b);
+        /*arr.filter(function (item) {
+          if (a <= item && item <= b) return true;
+          else return false;
+        });*/
+      }
+      let newArray = filterRange([5, 3, 8, 1], 1, 4);
+    </script>
+  </body>
+</html>
