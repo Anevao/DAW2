@@ -8,7 +8,7 @@
 <h1><center> Ejercicio alumnos2 ejemplo</center></h1>
 <br>
 <?php
-    require_once("./alumnos2.php")
+    require_once("./alumnos2.php");
     
     $primero1 = new Primero("Luis",20,5);
     echo $primero1->superaCurso();
