@@ -1,19 +1,21 @@
 <?php
 class Alumno2{
+    
     private $nom;
     private $edad;
     private $nota;
     const CICLO ="DAW";
     function __construct($nom, $edad, $nota){
-        this->nom=$nom;
-        this->edad=$edad;
-        this->nota=$nota;
+        $this->nom=$nom;
+        $this->edad=$edad;
+        $this->nota=$nota;
     }
+    //$this coge la variable de la nota aunk no mandes nada el sabe
     function superaCurso(){
         if($this->nota>5)
-        echo "el alumno ".$nom."esta aprobado";
+        echo "el alumno ".$this->nom."esta aprobado";
         else 
-        echo "el alumno ".$nom."esta suspenso";
+        echo "el alumno ".$this->nom."esta suspenso";
     }
 }
 class Primero extends Alumno2{
@@ -30,9 +32,9 @@ class Segundo extends Alumno2{
 //redefinicion de superar curso
     function superaCurso(){
         if($this->nota>=5 && $this->califProy>=5 && $this->fct=='apto')
-        echo "el alumno ".$nom."acaba segundo";
+        echo "el alumno ".$this->nom."acaba segundo";
         else 
-        echo "el alumno ".$nom."repite segundo";
+        echo "el alumno ".$this->nom."repite segundo";
     }
 }
 
