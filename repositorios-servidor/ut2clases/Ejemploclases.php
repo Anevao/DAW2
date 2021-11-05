@@ -11,9 +11,10 @@
     <?php
         // clases la primera con mayus?
         class Alumno{
-            //private
-            //protected
-            //public
+            //private solo lo usa la clase
+            //protected disponible para la clase y las k le extendian
+            //public dispo pa to2
+            //static solo se almacena una vez es para toda la clase
             private $n_matricula;
             private $nombre;
             private $edad;
@@ -25,7 +26,7 @@
                 $this->nombre = $nom;
                 $this->edad = $e;
             } 
-            //que pollas es esto
+            //lo que empieza por __ se ejecutan automaticamente al instanciar/crear el objeto
             function __toString(){
                 return "Alumno".$this->nombre." ".$this->edad
             }
@@ -36,7 +37,8 @@
                 }
                 echo "El precio es de". $importe." euros";
             }
-            //static public...porque¿
+            //static no hace falta intanciar o crear la clase es de la clase manupula constantes .........public...porque¿
+            //Alumno:calculo()
             static function calculo(){
                 a$ =new Alumno("123", "rober","20");
                 return $a->importe_matricula();
