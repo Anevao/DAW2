@@ -9,7 +9,7 @@
 <body>
     <h1>Ejercicio 1</h1>
     <?php
-        // clases la primera con mayus?
+        // clases la primera con mayus
         class Alumno{
             //private solo lo usa la clase
             //protected disponible para la clase y las k le extendian

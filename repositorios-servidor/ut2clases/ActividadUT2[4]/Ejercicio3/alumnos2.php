@@ -24,9 +24,9 @@ class Primero extends Alumno2{
 class Segundo extends Alumno2{
     //redefinicioin de constructor con otros datos
     function __construct($nom, $edad, $nota,$p,$fct){
-        parent::__construct($nombre,$edad,$nota)
-        this->califProy=$p;
-        this->fct=$fct;
+        parent::__construct($nom,$edad,$nota);
+        $this->califProy=$p;
+        $this->fct=$fct;
     }
 
 //redefinicion de superar curso
@@ -37,7 +37,7 @@ class Segundo extends Alumno2{
         echo "el alumno ".$this->nom."repite segundo";
     }
 }
-
+?>
 /*class Alumno2{
     private $nom;
     private $edad;
@@ -55,7 +55,7 @@ class Segundo extends Alumno2{
         echo "el alumno ".$nom."esta aprobado";
         else 
         echo "el alumno ".$nom."esta suspenso";
-    }*/
+    }
 
 }
 class Primero extends Alumno2{
