@@ -9,7 +9,7 @@
 <body>
     <?php
         class Alumno {
-            protected $nombr e;
+            protected $nombre;
             protected $edad;
             protected $calif_final;
             const CICLO = "DAW";
