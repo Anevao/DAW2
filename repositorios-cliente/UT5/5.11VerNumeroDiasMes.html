@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getLastDayOfMonth(year, month) {
+        //2012,1
+        let fecha = new Date(year, month + 1, 1); //2012 2 1
+        fecha.setDate(fecha.getDate() - 1); //2012 2 0 ->2012 1 29        return fecha.getdate(); //29
+      }
+      alert(getLastDayOfMonth(2012, 1)); //29
+
+      //solucion del libro
+      function getLastDayOfMonth1(year, month) {
+        let date = new Date(year, month + 1, 0);
+        return date.getDate();
+      }
+
+      alert(getLastDayOfMonth1(2012, 0)); // 31
+      alert(getLastDayOfMonth1(2012, 1)); // 29
+      alert(getLastDayOfMonth1(2013, 1)); // 28
+    </script>
+  </body>
+</html>
