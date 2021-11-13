@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let n = "";
+      while (isNaN(n) || n == "")
+        n = +prompt("Introduce un numero", "tiene que ser un numero"); //ojo k no pasa 50 sino 50,023784y23746y74892367846
+
+      alert(n);
+      function operar(n) {
+        return Math.exp(n) + "/";
+      }
+    </script>
+  </body>
+</html>

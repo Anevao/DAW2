@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio1</title>
+  </head>
+  <body>
+    <script>
+      let palindromo = "eeLa ruta nos aporto otro paso natural";
+      if (comprobarPalindromo(palindromo)) {
+        alert(palindromo + " es un palindromo");
+      } else {
+        alert(palindromo + " no es un palindromo");
+      }
+
+      function comprobarPalindromo(str) {
+        /*
+        str=srt.toLowerCase(); //cadena a minus
+        let arr = str.split(" "); //separo la sentencia en array sin espacios
+        let arr1 = arr.join(""); //vuelvo a juntar, tengo cadena en minusculas y sin espacios
+        arr = arr1.split(""); //separo por caracteres
+        arr.reverse(); //doy la vuelta
+        arr = arr.join("");//junto
+        */
+        let arrp = str.split(" ").join("").toLowerCase(); //cadena sin espacios y minus
+        let arrp1 = arrp.split("").reverse().join(""); //cadena dada la vuelta sin espacion en minus
+        //alert(arr);
+        //alert(arr1);
+
+        return arrp1 == arrp;
+      }
+    </script>
+  </body>
+</html>

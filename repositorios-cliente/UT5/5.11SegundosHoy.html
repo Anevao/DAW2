@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function SegundosHoy() {
+        let hoy = new Date();
+        let hoy00 = new Date(hoy.getFullYear, hoy.getMonth(), hoy.getDate());
+      }
+      function getSecondsToday() {
+        let now = new Date();
+
+        // creamos un objeto que contenga el día/mes/año actual
+        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        let diff = now - today; // diferencia entre fechas, representado en ms
+        return Math.round(diff / 1000); // pasaje a segundos
+      }
+
+      alert(getSecondsToday());
+      //alternativa
+      function getSecondsToday1() {
+        let d = new Date();
+        return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+      }
+
+      alert(getSecondsToday1());
+    </script>
+  </body>
+</html>
