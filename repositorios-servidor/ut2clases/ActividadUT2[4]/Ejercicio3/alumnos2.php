@@ -31,7 +31,7 @@ class Segundo extends Alumno2{
 
 //redefinicion de superar curso
     function superaCurso(){
-        if($this->nota>=5 && $this->califProy>=5 && $this->fct=='apto')
+        if($this->nota>=5 && $this->califProy>=5 && $this->fct=='no apto')
         echo "el alumno ".$this->nom."acaba segundo";
         else 
         echo "el alumno ".$this->nom."repite segundo";
