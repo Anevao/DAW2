@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function FinCurso() {
+        let hoy = new Date();
+        let ano =
+          hoy.getMonth() > 6 ? hoy.getFullYear() + 1 : hoy.getFullYear(); //cuidao que esto antes no ha funcionao
+        /*if (hoy.getMonth() > 6) {
+          ano = hoy.getFullYear() + 1;
+        } else {
+          ano = hoy.getFullYear();
+        }*/
+
+        let finCurso = new Date(ano, 5, 17);
+        //let dif = finCurso - hoy; //ojo que esta en ms
+        return (
+          "Quedan " +
+          Math.floor((finCurso - hoy) / 1000 / 60 / 60 / 24) + //lo pasamos de ms a dias
+          " días para el final de curso "
+        );
+      }
+      alert(FinCurso());
+    </script>
+  </body>
+</html>

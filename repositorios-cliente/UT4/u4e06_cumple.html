@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let mes = 9;
+      let dia = 20;
+      while (isNaN(mes) || mes == "" || mes > 12 || mes < 0) {
+        mes = +prompt("Introduce un mes", "tiene que ser un numero");
+      }
+      //alert("mes introducido " + mes);
+
+      while (isNaN(dia) || dia == "" || dia > 31 || dia < 0) {
+        dia = +prompt(
+          "Ahora intruduce el dia de tu nacimiento",
+          "tiene que ser un numero valido"
+        );
+      }
+      //alert("dia introducido " + dia);
+      alert(difCumple(dia, mes - 1));
+      function difCumple(dia, mes) {
+        //calculo de dias de diferencia
+        let hoy = new Date();
+        //let ano = hoy.getMonth() > mes ? hoy.getFullYear() + 1 : hoy.getFullYear()
+        let cumple = new Date(hoy.getFullYear(), mes, dia);
+        if (cumple - hoy < 0) cumple.setFullYear(cumple.getFullYear() + 1);
+
+        //calculo de cumples en domingo
+        let count = 0;
+        for (let i = cumple.getFullYear(); i <= 2100; i++) {
+          cumple.setFullYear(i);
+          if (cumple.getDay() == 0) count++;
+        }
+
+        return (
+          Math.floor((cumple - hoy) / 1000 / 60 / 60 / 24) +
+          "dias para tu proximo cumple y hasta el año 2100, tu cumpleaños va a caer en domingo " +
+          count +
+          " veces"
+        );
+      }
+    </script>
+  </body>
+</html>

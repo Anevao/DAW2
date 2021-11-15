@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [];
+
+      nuevoAlumno();
+      nuevoAlumno();
+      consultaAlumnos();
+
+      //borramos un alumno comprobando el dni
+      function borraAlumno() {
+        let dniBorrar = 0;
+        do {
+          dniBorrar = prompt("Escribe el DNI/NIE del alumnoque quieres borrar");
+        } while (!(verificarDni(dniBorrar) && !dniRepetido(dniBorrar)));
+        //acabar para k buske en dni en el array
+      }
+
+      //funcion para consultar el array
+      function consultaAlumnos() {
+        for (let i = 0; i < arr.length; i++)
+          document.write(Object.entries(arr[i]));
+      }
+
+      //inserta un objeto en el array
+      function nuevoAlumno() {
+        let alumno = {
+          /*
+           nombre: "manolo",
+        apellido1: "ruiz",
+        apellido2: "daw",
+        dni: "13113287K",
+        age: "18/06/1990",
+        sexo: "M",
+        telefono: "666554433",*/
+        };
+
+        alumno.nombre = prompt("Escribe el nombre del alumno", "gervasio");
+        alumno.apellido1 = prompt(
+          "Escribe el primer apellido del alumno",
+          "defer"
+        );
+        alumno.apellido2 = prompt(
+          "Escribe el segundo apellido del alumno",
+          "perez"
+        );
+        do {
+          alumno.dni = prompt("Escribe el DNI/NIE del alumno", "13113287k");
+        } while (!(verificarDni(alumno.dni) && dniRepetido(alumno.dni)));
+        alumno.age = prompt("Escribe la fecha de nacimiento", "18/06/1990");
+        alumno.sexo = prompt("Escribe el genero del alumno", "M");
+        alumno.telefono = prompt("Escribe el telefono del alumno", "666554433");
+        arr[arr.length] = alumno;
+      }
+
+      //funcion que comprueba dnis y nies
+      function verificarDni(dni) {
+        let nie = ["X", "Y", "Z"];
+        let letras = [
+          "T",
+          "R",
+          "W",
+          "A",
+          "G",
+          "M",
+          "Y",
+          "F",
+          "P",
+          "D",
+          "X",
+          "B",
+          "N",
+          "J",
+          "Z",
+          "S",
+          "Q",
+          "V",
+          "H",
+          "L",
+          "C",
+          "K",
+          "E",
+        ];
+        let arr = dni.split("");
+        if (arr.length == 9) {
+          if (isNaN(arr[0])) {
+            for (let i = 0; i <= nie.length; i++) {
+              if (arr[0].toUpperCase() == nie[i]) {
+                arr[0] = i;
+                dni = arr.slice(0, 8).join("");
+                if (letras[dni % 23] == arr[8]) {
+                  console.log("NIE correcto");
+                  return true;
+                } else {
+                  console.log("Letra NIE incorrecta");
+                  return false;
+                }
+              }
+            }
+          } else {
+            dni = arr.slice(0, 8).join("");
+            let resultado = dni % 23;
+            let resultado1 = arr[8];
+            if (letras[dni % 23] == arr[8].toUpperCase()) {
+              console.log("DNI correcto");
+              return true;
+            } else {
+              alert("Letra DNI incorrecta");
+              return false;
+            }
+          }
+        } else {
+          alert("LONGITUD ERRONEA DEL IDENTIFICADOR");
+          return false;
+        }
+      }
+
+      //revisa en en array si hay un dni duplicado, debvuelve true si esta todo ok
+      function dniRepetido(dni) {
+        let check = true;
+        arr.forEach(function chekea(item, index, array) {
+          if (item.dni == dni) {
+            alert("este dni ya existe");
+            check = false;
+          }
+        });
+
+        return check;
+      }
+    </script>
+  </body>
+</html>

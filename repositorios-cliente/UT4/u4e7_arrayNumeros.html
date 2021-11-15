@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="submit" value="Mostrar numeros pares" onclick="verPares()" />
+    <input
+      type="submit"
+      value="Sumatorio de todos los elementos del array"
+      onclick="sumatorio()"
+    />
+    <input
+      type="submit"
+      value="eliminar ultimo y añadir nuestro"
+      onclick="sustituirUltimaPos()"
+    />
+    <input
+      type="submit"
+      value="Ver numero mayor del array"
+      onclick="valorMax()"
+    />
+
+    <script>
+      let arr = [5, 2, 6, 5, 8, 123, 20];
+      function verPares() {
+        let arrPar = [];
+        let arrParPrueba = []; //el array que uso en los metodos de realizar que no son funcionales
+
+        //Se muestra esta operacion con forEach()
+        arr.forEach((item) => {
+          item % 2 == 0 ? arrPar.push(item) : console.log(item + "noentra");
+        }); //sin poner condicion de "else" no va, cuidao
+
+        //prueba con filter +facil
+        arrParPrueba = arr.filter((item) => item % 2 == 0); //cuando devuelve valor true carga dato
+
+        //prueba con for
+        for (let i = 0; i < arr.length; i++)
+          arr[i] % 2 == 0
+            ? arrParPrueba.push(arr[i])
+            : console.log(arr[i] + "noentra");
+
+        //prueba con for of
+        for (let item of arr)
+          item % 2 == 0
+            ? arrParPrueba.push(item)
+            : console.log(item + "noentra");
+
+        //prueba con for in
+        for (let item in arr)
+          arr[item] % 2 == 0
+            ? arrParPrueba.push(arr[item])
+            : console.log(arr[item] + "noentra");
+
+        alert("Los numeros pares del Array son: " + arrPar);
+        /*//cuidado, hacerlo asi borra los botones
+        document.write("<p><span>Numeros pares del Array:</span></p>");
+        document.write(arrPar);*/
+      }
+
+      function sumatorio() {
+        let sum = 0;
+        arr.forEach((item) => {
+          sum += item;
+        });
+        alert("El sumatorio de todos los numero del array es" + sum);
+      }
+      function sustituirUltimaPos() {
+        alert(
+          "Se elimina el ultimo elemento del array " +
+            arr.pop() +
+            " y se sustituye por " +
+            arr[arr.push(prompt("Introduce un nuevo ultimo elemento", "")) - 1]
+          //arr.push(prompt("Introduce un nuevo ultimo elemento", "")) devuelve un array.lenght
+        );
+      }
+      function valorMax() {
+        let max = 0;
+        arr.forEach((item) => {
+          if (+item > max) max = item;
+        });
+        alert(max + " es el numero mayor");
+      }
+    </script>
+  </body>
+</html>
