@@ -9,10 +9,26 @@
   <body>
     <script>
       let arr = [];
+      do {
+        option = +prompt(
+          "GESTION DE DATOS DEL ALUMNADO\n1.Introducir alumno \n2.Consultar datos \n3.Borrar alumno \n4.Modifica los datos de un alumno \n5.Salir"
+        );
+        switch (option) {
+          case 1:
+            nuevoAlumno();
+            break;
+          case 2:
+            consultaAlumnos();
+            break;
 
-      nuevoAlumno();
-      nuevoAlumno();
-      consultaAlumnos();
+          case 3:
+            borraAlumno();
+            break;
+          case 4:
+            modificaAlumno();
+            break;
+        }
+      } while (option != 5 && option != null);
 
       //borramos un alumno comprobando el dni
       function borraAlumno() {
@@ -20,27 +36,60 @@
         do {
           dniBorrar = prompt("Escribe el DNI/NIE del alumnoque quieres borrar");
         } while (!(verificarDni(dniBorrar) && !dniRepetido(dniBorrar)));
-        //acabar para k buske en dni en el array
+        arr.forEach(function chekea(item, index, array) {
+          if (item.dni == dniBorrar) {
+            array.splice(index, 1);
+          }
+        });
+      }
+
+      //modifica datos
+      function modificaAlumno() {
+        let dniMod = 0;
+        do {
+          dniMod = prompt("Escribe el DNI/NIE del alumnoque quieres modificar");
+        } while (!(verificarDni(dniMod) && !dniRepetido(dniMod)));
+        arr.forEach(function chekea(item, index, array) {
+          if (item.dni == dniMod) {
+            alumno.nombre = prompt("Escribe el nombre del alumno");
+            alumno.apellido1 = prompt("Escribe el primer apellido del alumno");
+            alumno.apellido2 = prompt("Escribe el segundo apellido del alumno");
+            alumno.age = prompt("Escribe la fecha de nacimiento");
+            alumno.sexo = prompt("Escribe el genero del alumno");
+            alumno.telefono = prompt("Escribe el telefono del alumno");
+          }
+        });
       }
 
       //funcion para consultar el array
       function consultaAlumnos() {
+        //document.write('<input type="submit" value="volver al menu" onclick="Menu()" />"');
         for (let i = 0; i < arr.length; i++)
-          document.write(Object.entries(arr[i]));
+          alert(
+            "alumno" +
+              (i + 1) +
+              "\nnombre: " +
+              arr[i].nombre +
+              "\n" +
+              "apellidos: " +
+              arr[i].apellido1 +
+              " " +
+              arr[i].apellido2 +
+              "\nDNI/NIE: " +
+              arr[i].dni +
+              "\nfecha de nacimiento: " +
+              arr[i].age +
+              "\nsexo: " +
+              arr[i].sexo +
+              "\ncontacto: " +
+              arr[i].telefono +
+              "\n"
+          );
       }
 
       //inserta un objeto en el array
       function nuevoAlumno() {
-        let alumno = {
-          /*
-           nombre: "manolo",
-        apellido1: "ruiz",
-        apellido2: "daw",
-        dni: "13113287K",
-        age: "18/06/1990",
-        sexo: "M",
-        telefono: "666554433",*/
-        };
+        let alumno = new Object();
 
         alumno.nombre = prompt("Escribe el nombre del alumno", "gervasio");
         alumno.apellido1 = prompt(
@@ -52,12 +101,12 @@
           "perez"
         );
         do {
-          alumno.dni = prompt("Escribe el DNI/NIE del alumno", "13113287k");
+          alumno.dni = prompt("Escribe el DNI/NIE del alumno", "56221526G");
         } while (!(verificarDni(alumno.dni) && dniRepetido(alumno.dni)));
         alumno.age = prompt("Escribe la fecha de nacimiento", "18/06/1990");
         alumno.sexo = prompt("Escribe el genero del alumno", "M");
-        alumno.telefono = prompt("Escribe el telefono del alumno", "666554433");
-        arr[arr.length] = alumno;
+        alumno.telefono = prompt("Escribe el telefono del alumno", "666444444");
+        arr.push(alumno);
       }
 
       //funcion que comprueba dnis y nies

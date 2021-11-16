@@ -8,14 +8,32 @@
   </head>
   <body>
     <script>
-      let n = "";
-      while (isNaN(n) || n == "")
-        n = +prompt("Introduce un numero", "tiene que ser un numero"); //ojo k no pasa 50 sino 50,023784y23746y74892367846
+      let numero;
+      do {
+        numero = prompt("Numero para operar", "");
+      } while (isNaN(numero));
+      numero = Number(numero);
+      /*let exponencial = numero.toExponential();
+      let dec = numero+".0000";
+      let binario = numero.toString(2);
 
-      alert(n);
-      function operar(n) {
-        return Math.exp(n) + "/";
-      }
+      let octal = numero.toString(8);
+
+      let hex = "0x"+numero.toString(16);
+
+      alert(exponencial +" / "+ dec +" / "+ binario +" / "+ octal +" / "+ hex);*/
+      alert(
+        numero.toExponential() +
+          " / " +
+          numero +
+          ".0000" +
+          " / " +
+          numero.toString(2) +
+          " / " +
+          numero.toString(8) +
+          " / 0x" +
+          numero.toString(16)
+      );
     </script>
   </body>
 </html>
