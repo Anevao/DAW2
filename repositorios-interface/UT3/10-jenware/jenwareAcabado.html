@@ -9,10 +9,15 @@
         font-size: 100%;
         background: linear-gradient(to bottom, #ffa853 0%, #fdf9bd 2%);
       }
-
+      /*ESTILOS EJERCICIO*/
+      #award {
+        position: fixed;
+        top: 35px;
+        left: 25px;
+      }
       /* link styles */
       a:link {
-        text-decoration: underline dotted;
+        color: #c00;
       }
       a:visited {
         color: #921a66;
@@ -45,7 +50,6 @@
       /* styles for navigation */
       #nav {
         background-color: #751c54;
-        border: #ba89a8 1px solid;
       }
       #nav ul {
         list-style: none;
@@ -53,15 +57,9 @@
       #nav ul li {
         font-weight: normal;
         text-transform: uppercase;
-        display: inline-block;
       }
       #nav ul a:link {
-        display: block;
-
         color: #fff;
-        width: 5em;
-        border-radius: 5px;
-        text-decoration: none;
       }
       #nav ul a:visited {
         color: #fff;
@@ -71,8 +69,6 @@
       }
       #nav ul a:hover {
         color: #fc6;
-        border: white 1px solid;
-        padding: 6px;
       }
       #nav ul a:active {
         color: #f00;
@@ -81,8 +77,6 @@
       /* styles for the products section */
 
       #products {
-        padding: 10px;
-        border: thick double orange;
         background-color: #fff;
         line-height: 1.5em;
       }
@@ -105,10 +99,6 @@
         font-size: 0.875em;
         line-height: 1.5;
         color: #633;
-        padding: 5px;
-        padding-left: 60px;
-        margin: 5px;
-        border-radius: 30px;
       }
 
       #testimonials h2 {
@@ -128,20 +118,6 @@
         color: #663333;
         font-size: 0.8em;
         text-align: center;
-      }
-      /*li > a {
-        text-decoration: none;
-        color: #c00;
-        border-bottom: red 1px dotted;
-      }*/
-      p > a {
-        text-decoration: underline dotted;
-        color: #c00;
-        clear: both;
-        display: block;
-      }
-      img {
-        float: left;
       }
     </style>
   </head>
@@ -223,5 +199,8 @@
       </p>
     </div>
     <!-- end #content -->
+    <div id="award">
+      <img src="images/awesomesite.gif" alt="awesome site of the week" />
+    </div>
   </body>
 </html>
