@@ -8,8 +8,10 @@
   </head>
   <body>
     <script>
-      alert(calcularLetraDni(56221526));
+      let docu = "Y6478436V";
+      alert(docu + calcularLetraDni(docu));
       function calcularLetraDni(dni) {
+        let nie = ["X", "Y", "Z"];
         let letras = [
           "T",
           "R",
@@ -35,7 +37,30 @@
           "K",
           "E",
         ];
-        return dni + letras[dni % 23];
+        let arr = dni.split("");
+        if (arr.length == 9) {
+          if (isNaN(arr[0])) {
+            for (let i = 0; i <= nie.length; i++) {
+              if (arr[0].toUpperCase() == nie[i]) {
+                arr[0] = i;
+                dni = arr.slice(0, 8).join("");
+                if (letras[dni % 23] == arr[8]) return "NIE correcto";
+                else return "Letra NIE incorrecta";
+              }
+            }
+          } else {
+            dni = arr.slice(0, 8).join("");
+            let resultado = dni % 23;
+            let resultado1 = arr[8];
+            if (letras[dni % 23] == arr[8].toUpperCase()) {
+              return "DNI correcto";
+            } else {
+              return "Letra DNI incorrecta";
+            }
+          }
+        } else {
+          return "LONGITUD ERRONEA DEL IDENTIFICADOR";
+        }
       }
     </script>
   </body>

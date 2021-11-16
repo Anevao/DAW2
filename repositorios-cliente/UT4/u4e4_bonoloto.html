@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function randomInt(min, max) {
+        let rand = min + Math.random() * (max + 1 - min); // aquí rand es desde min a (max+1)
+        return Math.floor(rand); //aqui redondeas al enero, para tener las mismas posiblidades 50,999999 es 50
+      }
+      let bonoloto = [];
+      //while(bonoloto.lenght <6 )no funciona, preguntar
+      for (let i = 0; i < 6; i++) {
+        debugger;
+        let n = randomInt(1, 50);
+        while (bonoloto.indexOf(n) != -1) {
+          n = randomInt(1, 50);
+        }
+        bonoloto.push(n);
+      }
+      bonoloto.push(randomInt(1, 9));
+      alert("Los numero ganadores de la bonoloto son" + bonoloto);
+    </script>
+  </body>
+</html>
