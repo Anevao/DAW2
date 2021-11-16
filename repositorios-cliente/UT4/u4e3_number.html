@@ -9,12 +9,22 @@
   <body>
     <script>
       let n = "";
-      while (isNaN(n) || n == "")
+      while (isNaN(n) || n == "") {
         n = +prompt("Introduce un numero", "tiene que ser un numero"); //ojo k no pasa 50 sino 50,023784y23746y74892367846
+      }
+      alert(procesarNumero(numero));
 
-      alert(n);
-      function operar(n) {
-        return Math.exp(n) + "/";
+      function procesarNumero(numero) {
+        let binario = Number(numero).toString(2);
+        let octal = Number(numero).toString(8);
+        let hexadec = Number(numero).toString(16);
+
+        let decimales = numero + ".0000";
+
+        let numTemp = numero.split("").slice(1).join("");
+        let exponencial = numero[0] + "," + numTemp + "x10e" + numTemp.length;
+
+        return `Número: ${numero} \nEn notación científica: ${exponencial} \nCon 4 decimales: ${decimales} \nEn binario: ${binario} \nEn octal: ${octal} \nEn hexadecimal: ${hexadec}`;
       }
     </script>
   </body>

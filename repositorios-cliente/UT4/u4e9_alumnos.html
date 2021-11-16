@@ -31,16 +31,16 @@
 
       //inserta un objeto en el array
       function nuevoAlumno() {
-        let alumno = {
-          /*
-           nombre: "manolo",
-        apellido1: "ruiz",
-        apellido2: "daw",
-        dni: "13113287K",
-        age: "18/06/1990",
-        sexo: "M",
-        telefono: "666554433",*/
-        };
+        let alumno = new Object();
+        //let alumno = {
+        /*dni: introducirDni(),
+          nombre: "manolo",
+          apellido1: "ruiz",
+          apellido2: "daw",
+          age: "18/06/1990",
+          sexo: "M",
+          telefono: "666554433",*/
+        //};
 
         alumno.nombre = prompt("Escribe el nombre del alumno", "gervasio");
         alumno.apellido1 = prompt(
@@ -57,7 +57,8 @@
         alumno.age = prompt("Escribe la fecha de nacimiento", "18/06/1990");
         alumno.sexo = prompt("Escribe el genero del alumno", "M");
         alumno.telefono = prompt("Escribe el telefono del alumno", "666554433");
-        arr[arr.length] = alumno;
+        //arr.push(({ ...(arr.length-1) } = alumno));
+        arr.push(alumno);
       }
 
       //funcion que comprueba dnis y nies
