@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //esta linea es para que se cargue primero el HTML antes de ejecutar scripts
+      window.addEventListener(
+        "load",
+        function () {
+          //clase padre
+          class Telefono {
+            constructor(mar) {
+              this._marca = mar;
+            }
+            //estos metodos get y set aparentemente hacen q luego la clase funcione como un objeto (ver final)
+            get marca() {
+              return this._marca;
+            }
+
+            set marca(marca) {
+              this._marca = marca;
+            }
+
+            anuncio() {
+              return "el mejor telefono es " + this.marca;
+            }
+          }
+
+          //extension clase hija hereda del pater
+          class Modelo extends Telefono {
+            constructor(marca, modelo) {
+              super(marca);
+              this.modelo = modelo;
+            }
+            anuncioCompleto() {
+              return this.anuncio() + " " + this.modelo;
+            }
+          }
+
+          let miTelefono = new Modelo("Google", "Pixel"); //construyo el objeto de forma tradicional
+          anuncio.innerHTML = miTelefono.anuncioCompleto(); //muestra en el div anuncio el anuncio del padre mas la mejora del hijo
+          let miTelefono1 = new Telefono(""); //inicializo un objeto tipo telefono
+          miTelefono1.marca = "iPhone"; //estoy construyendo con el SET en vez de con el constructor
+          mensaje.innerHTML = "Mi telefono es" + miTelefono1.marca; //llamo al atributo con el metodo GET
+          //al div mensaje, para usar estas historias de escribir en el html todo va dentro del windowaddevent....
+        },
+        true
+      );
+    </script>
+    <h1>Ejercicio herencias geters y seters</h1>
+    <div id="mensaje"></div>
+    <div id="anuncio"></div>
+  </body>
+</html>
