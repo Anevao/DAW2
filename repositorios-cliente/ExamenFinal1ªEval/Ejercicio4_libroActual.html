@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Libro {
+        constructor(ISBN, titulo, autor, ano) {
+          this._ISBN = ISBN;
+          this._titulo = titulo;
+          this._autor = autor;
+          this._ano = ano;
+        }
+        get actual() {
+          let today = new Date();
+          return this._ano == today.getFullYear();
+        }
+        toString() {
+          return (
+            "ISBN: " +
+            this._ISBN +
+            "\ntitulo: " +
+            this._titulo +
+            "\nautor: " +
+            this._autor +
+            "\naño " +
+            this._ano +
+            "\nactual: " +
+            this.actual
+          );
+        }
+      }
+      alert(
+        new Libro("8974545", "castellano", "Lorenzo silva", 2021).toString()
+      );
+      alert(
+        new Libro(
+          "8974546",
+          "La marca del meridiano",
+          "Lorenzo silva",
+          2019
+        ).toString()
+      );
+    </script>
+  </body>
+</html>

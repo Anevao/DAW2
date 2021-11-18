@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      primerDia();
+      primerDia(2020);
+      function primerDia(ano) {
+        let fecha = new Date();
+        let arr = [
+          "domingo",
+          "lunes",
+          "martes",
+          "miercoles",
+          "jueves",
+          "vieres",
+          "sabado",
+        ];
+        fecha.setDate(1);
+        if (ano == undefined) {
+          ano = fecha.getFullYear() + 1;
+          fecha.setFullYear(ano);
+        } else {
+          fecha.setFullYear(ano);
+        }
+        console.log(fecha);
+        for (let i = 0; i < 11; i++) {
+          fecha.setMonth(i);
+          document.write(
+            "El 1 del mes" +
+              (i + 1) +
+              "del año" +
+              fecha.getFullYear() +
+              "cae en " +
+              arr[fecha.getDay()] +
+              "<br>"
+          );
+        }
+        document.write("<br>");
+      }
+    </script>
+  </body>
+</html>
