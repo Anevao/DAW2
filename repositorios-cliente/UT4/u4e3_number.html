@@ -8,24 +8,32 @@
   </head>
   <body>
     <script>
-      let n = "";
-      while (isNaN(n) || n == "") {
-        n = +prompt("Introduce un numero", "tiene que ser un numero"); //ojo k no pasa 50 sino 50,023784y23746y74892367846
-      }
-      alert(procesarNumero(numero));
+      let numero;
+      do {
+        numero = prompt("Numero para operar", "");
+      } while (isNaN(numero));
+      numero = Number(numero);
+      /*let exponencial = numero.toExponential();
+      let dec = numero+".0000";
+      let binario = numero.toString(2);
 
-      function procesarNumero(numero) {
-        let binario = Number(numero).toString(2);
-        let octal = Number(numero).toString(8);
-        let hexadec = Number(numero).toString(16);
+      let octal = numero.toString(8);
 
-        let decimales = numero + ".0000";
+      let hex = "0x"+numero.toString(16);
 
-        let numTemp = numero.split("").slice(1).join("");
-        let exponencial = numero[0] + "," + numTemp + "x10e" + numTemp.length;
-
-        return `Número: ${numero} \nEn notación científica: ${exponencial} \nCon 4 decimales: ${decimales} \nEn binario: ${binario} \nEn octal: ${octal} \nEn hexadecimal: ${hexadec}`;
-      }
+      alert(exponencial +" / "+ dec +" / "+ binario +" / "+ octal +" / "+ hex);*/
+      alert(
+        numero.toExponential() +
+          " / " +
+          numero +
+          ".0000" +
+          " / " +
+          numero.toString(2) +
+          " / " +
+          numero.toString(8) +
+          " / 0x" +
+          numero.toString(16)
+      );
     </script>
   </body>
 </html>
