@@ -23,6 +23,7 @@
     $num = 6;
     $suma = $num + $dat;
     if ($suma < 0) {
+        //finaliza el script
         exit();
     } else {
         echo $num, "+", $dat, "=", $suma;
@@ -49,8 +50,9 @@
     }
 
     //caso b
-    $busqueda = 5;
+    $busqueda = -2;
     echo "<b>POSICIÓN DEL VALOR $busqueda</b>: <br>";
+    //devuelve posicion index del valor buscado si no no devuelve na""
     echo array_search($busqueda, $array), "<br>";
 
     //caso c
@@ -114,7 +116,7 @@
     $num = "8.25";
     echo tablam2($num);
     echo "<br>";
-    //caso c
+    //caso c variables por referencia al poner &$num mandas la variable sino solo mandas el valor k tiene
     function tablam3($num, &$res)
     {
         $texto = '';
@@ -169,6 +171,7 @@
 
         foreach ($frase_array as $frase) {
             $primera_letra = $frase[0];
+            //coge el string a partir del index 
             $palabra_sin_primera_letra = substr($frase, 1);
             $frase_traducida .= $palabra_sin_primera_letra . $primera_letra . "um ";
         }
@@ -202,7 +205,9 @@
     <?php
     function calcularEdad($año, $mesNac, $diaNac)
     {
+        //segundos desde unix ke es en 1970, las 3 primeras variables son horas min y secs
         $segundosUnix = mktime(0, 0, 0, $mesNac, $diaNac, $año);
+        //time() segundos desde unix hasta la actualidad
         $segundosV = time() - $segundosUnix;
         $edad = $segundosV / 60 / 60 / 24 / 365.25;
         echo "Edad: ", (int)$edad, " años.";
@@ -216,6 +221,18 @@
     {
         date_default_timezone_set("Europe/Madrid");
         $navidad = mktime(0, 0, 0, 12, 25, date("y"));
+        //date() devuelve el mes dia o año actual
+        /*
+            d-dia 1-31
+            m-mes 1-12
+            y-año 4dig
+            l-dia de la semana
+
+            h- hora 1-12
+            i- min 0-59
+            s- seg 0-59
+            a- am-pm
+        */
         $hoy = mktime(0, 0, 0, date("m"), date("d"), date("y"));
         $dif = ($navidad - $hoy);
         if ($dif % 86400 != 0) {
@@ -235,11 +252,14 @@
     function caducar(&$farma)
     {
         for ($i = 0; $i < count($farma); $i++) {
+            //str to time pasa string a time
             $f_unix = strtotime($farma[$i][1]);
+            
             $hoy = mktime(0, 0, 0, date("m"), date("d"), date("y"));
             $caducado = $hoy - $f_unix;
-            var_dump($i);
-            var_dump($caducado);
+            //var dump da info de locos
+            //var_dump($i);
+            //var_dump($caducado);
             if ($caducado > 0) {
                 echo $farma[$i][0], " está caducado. <br>";
                 unset($farma[$i]);
@@ -254,9 +274,9 @@
         array("fenergan", "5-2022"),
         array("termalgin", "8-2022")
     );
-    var_dump($farmacia);
+    //var_dump($farmacia);
     caducar($farmacia);
-    var_dump($farmacia);
+    //var_dump($farmacia);
     ?>
     <br>
     <h1>Ejercicio 21 </h1>

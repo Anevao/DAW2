@@ -63,7 +63,9 @@
     ?>
     <br>
     <h2>Ejercicio 3</h2>
+    
     <?php
+    //array asociativoo
     $lectivos = array("otoño" => 60, "invierto" => 51, "primavera" => 57, "verano" => 7);
 
     $menosdias = 300;
@@ -203,6 +205,8 @@
     <br>
     <h2>Ejercicio 8</h2>
     <?php
+
+    //ejemplo jodido de array asociativo
     $oscars = array("Antonio Banderas" => array("Dolor y Gloria", "La piel que habito"), "Brad Pitt" => "Erase una vez...Hollywood", "Laura Darn" => "Historia de un matrimonio");
 
     foreach ($oscars as $actor => $valor) {

@@ -18,7 +18,8 @@ foreach($num as $valor)
         echo $valor;
 }
 //media
-$suma=0
+$suma=0;
+
 for($i=0;$i<count($num);$i++){
     $suma= $suma +num[$i];
 }
