@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>u5e01</title>
+  </head>
+  <body>
+    <script>
+      class Vector {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          //al cuadrado **2
+          let hipotenusa = Math.sqrt(x ** 2 + y ** 2);
+          this.hipotenusa = hipotenusa;
+        }
+
+        sumar(x, y) {
+          let sx = this.x + x;
+          let sy = this.y + y;
+          return "x: " + sx + ", y: " + sy;
+        }
+        restar(x, y) {
+          let rx = this.x - x;
+          let ry = this.y - y;
+          return "x: " + rx + ", y: " + ry;
+        }
+      }
+
+      let vector1 = new Vector(1, 2);
+      let vector2 = new Vector(3, 4);
+      console.log(vector1.sumar(2, 3));
+      console.log(vector1.restar(2, 3));
+      console.log(vector2.hipotenusa);
+    </script>
+  </body>
+</html>

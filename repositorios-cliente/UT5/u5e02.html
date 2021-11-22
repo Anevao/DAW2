@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>u5e02</title>
+  </head>
+  <body>
+    <script>
+      class Vehiculo {
+        constructor(col, marc, mod, vm) {
+          this.color = col;
+          this.marca = marc;
+          this.modelo = mod;
+          this.velocidadMaxima = vm;
+        }
+        comenzar() {
+          alert("Encender motor");
+        }
+        parar() {
+          alert("Apagar motor");
+        }
+        calcularDistMax(tiempo) {
+          let distanciaMax = this.velocidadMaxima * (tiempo / 3600);
+          console.log(
+            "La distancia recorrida en " +
+              tiempo +
+              " segundos ha sido " +
+              distanciaMax +
+              " kilometros"
+          );
+        }
+      }
+
+      class Coche extends Vehiculo {
+        constructor(col, marc, mod) {
+          super();
+          this.velocidadMaxima = 120;
+        }
+        parar() {
+          alert("Aparcar");
+        }
+      }
+      class Avion extends Vehiculo {
+        constructor(col, marc, mod) {
+          super();
+          this.velocidadMaxima = 1000;
+        }
+        comenzar() {
+          alert("Despegar");
+        }
+        parar() {
+          alert("Aterrizar");
+        }
+      }
+      /*Ejemplo de clase Vehículo*/
+      let vehiculo1 = new Vehiculo("rojo", "ferrari", "testarossa", 310);
+      vehiculo1.comenzar();
+      vehiculo1.parar();
+      vehiculo1.calcularDistMax(3600);
+      /*Ejemplo de clase Coche*/
+      let coche1 = new Coche("negro", "fiat", "anda");
+      coche1.comenzar();
+      coche1.parar();
+      coche1.calcularDistMax(1000);
+      coche1.velocidadMaxima;
+      /*Ejemplo de clase Avión*/
+      let avion1 = new Avion("blanco", "boeing", "747");
+      avion1.comenzar();
+      avion1.parar();
+      avion1.calcularDistMax(3000);
+      avion1.velocidadMaxima;
+    </script>
+  </body>
+</html>
