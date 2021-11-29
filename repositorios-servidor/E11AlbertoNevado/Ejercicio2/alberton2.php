@@ -33,7 +33,7 @@ function valida_dato(){
     //\d para aceptar solo digitos y el + para q siempre sea uno o mas, esto 
     //depuraria tambien el mandar el campo vacio, pero el mensaje de error no distinguiria
     //que has hecho mal , por lo tanto he decidido controlarlo abajo con el isset
-    $patron='/\d+/';
+    $patron='/\d+.?\d\d/';
     return preg_match($patron,$_POST["precio"]);
 }
 if(isset($_POST["enviar"])){

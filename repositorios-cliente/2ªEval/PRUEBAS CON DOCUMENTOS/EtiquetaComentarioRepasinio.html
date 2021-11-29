@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let body = document.body;
+      //remplaza el contenido del body por este comentario
+
+      body.innerHTML = "<!--" + body.tagName + "-->";
+      //por lo tanto el primer nodo (y unico) es el comentario, sale lo k hay dentro en este caso body xk .tagname sale en mayus
+      alert(body.firstChild.data); // BODY
+      body.innerHTML += "<h1>titulaso</h1>";
+      // esto es para señalar una etiqueta, señala siempre la primera
+      //(querySelectorAll nos devuelve coleccion para pillar el nitemos) document.querySelector("h1")
+      //ejemplo:
+      titulo = document.querySelector("h1");
+      //asi cambias el id del h1
+      titulo.id = "añadoID";
+      //añado un imput al body y un p
+      body.innerHTML +=
+        '<input type="text" id="elem" value="el valor"> <p>glou</p>';
+      /*
+          //devuelve el valor de un input con value x.value
+          console.log(elem.type); // "text"
+          console.log(elem.id); // "elem"
+          console.log(elem.value); // value */
+
+      //cambiamos el texto de una etiqueta si haces el all deuveleve un nodelist(array like)
+      let p = document.querySelector("p");
+      p.textContent = "glou=olis";
+      //oculto el p
+      p.hidden;
+      /*Claro. Todos los atributos son accesibles para los no estandar usando los siguientes métodos:
+          para los estandar se puede hacer como arriba p.id etc
+
+          elem.hasAttribute(nombre) – comprueba si existe.
+          elem.getAttribute(nombre) – obtiene el valor.
+          elem.setAttribute(nombre, valor) – establece el valor.
+          elem.removeAttribute(nombre) – elimina el atributo.
+          elem.attributes es una colección de todos los atributos*/
+      body.innerHTML += '<div data-widget-name="menu">Elige el género</div>';
+      // creas la variable con el atributo
+      let elem = document.querySelector("[data-widget-name]");
+      // consigues el valor de estas2 formas
+      alert(elem.dataset.widgetName);
+      alert(elem.getAttribute("data-widget-name"));
+
+      body.innerHTML +=
+        '<a name="list">the list</a><ul><li><a href="http://google.com">http://google.com</a></li><li><a href="/tutorial">/tutorial.html</a></li><li><a href="local/path">local/path</a></li><li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li><li><a href="http://nodejs.org">http://nodejs.org</a></li><li><a href="http://internal.com/test">http://internal.com/test</a></li></ul>';
+      let links = document.querySelectorAll("a");
+
+      for (let link of links) {
+        let href = link.getAttribute("href");
+        if (!href) continue; // no atributo
+
+        if (!href.includes("://")) continue; // no protocolo
+
+        if (href.startsWith("http://internal.com")) continue; // interno
+
+        link.style.color = "orange";
+      }
+    </script>
+  </body>
+</html>
