@@ -79,18 +79,39 @@
       }
 
       function consultaBiblio() {
-        for (let i = 0; i < arr.length; i++) alert(arr[i].toString());
+        let id = prompt("ISBN del libro a consultar");
+        arr.forEach(function chekea(item, index, array) {
+          for (let i = 0; i < arr.length; i++) alert(arr[i].toString());
+        });
       }
 
       function prestarLibro() {
         let comp = arr.length;
         let id = prompt("ISBN del libro a prestar");
-        arr.forEach(function chekea(item, index, array) {
-          if (item._ISBN == id) {
-            arrPrest.push(item);
-            arr.splice(index, 1);
+        if (
+          arr.findIndex(function (ele) {
+            if (ele == id) {
+              return true;
+            } else {
+              return false;
+            }
+          }) == -1
+        ) {
+          console.log("no esta disponible para prestar");
+          if (
+            arr.findIndex(function (ele) {
+              if (ele == id) {
+                return true;
+              } else {
+                return false;
+              }
+            }) == -1
+          ) {
+            console.log("no esta prestado");
+          } else {
+            alert("busca en prestados");
           }
-        });
+        }
         if (comp == arr.length) alert("no se ha prestado libro");
       }
       function devolverLibro() {
