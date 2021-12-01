@@ -64,6 +64,20 @@
 
         link.style.color = "orange";
       }
+
+      //MODIFICANDO DOCUMENTOS
+      //Crea una función clear(elem) que remueva todo del elemento.
+      body.innerHTML += '<ol id="elem"><li>Hola</li><li>mundo</li></ol>';
+
+      function clear(elem) {
+        /*while (elem.firstChild) {
+          elem.firstChild.remove();
+        }*/
+        //o mas facil
+        elem.innerHTML = "";
+      }
+
+      clear(elem); // borra la lista
     </script>
   </body>
 </html>
