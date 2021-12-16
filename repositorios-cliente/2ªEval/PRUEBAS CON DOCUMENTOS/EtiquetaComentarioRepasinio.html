@@ -78,6 +78,34 @@
       }
 
       clear(elem); // borra la lista
+
+      /*Escribir una interfaz para crear una lista de lo que ingresa un usuario.
+      Para cada item de la lista:
+      Preguntar al usuario acerca del contenido usando prompt.
+      Crear el <li> con ello y agregarlo a <ul>.
+      Continuar hasta que el usuario cancela el ingreso (presionando Esc o con un ingreso vacío).
+      Todos los elementos deben ser creados dinámicamente.
+      Si el usuario ingresa etiquetas HTML, deben ser tratadas como texto.*/
+
+      //crea puntero a un elemento ul
+      ul = document.createElement("ul");
+      //añade al body como ultimo hijo(append)
+      document.body.append(ul);
+      //bucle infinito
+      while (true) {
+        let data = prompt("Ingresa el texto para el ítem de la lista", "");
+        //condicion de salida del while, si esta vacio o da cancelar
+        if (!data) {
+          break;
+        }
+        //crea el li y lo añade a ul
+        let li = document.createElement("li");
+        //da el texto que has pedido en el prompt a la etiqueta li
+        //si utilizasemos innerhtml, me reconoceria las etiquetas html como <p>
+        li.textContent = data;
+        //añade a ul
+        ul.append(li);
+      }
     </script>
   </body>
 </html>

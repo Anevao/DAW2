@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ejercicio 2</title>
+  </head>
+  <body>
+    <h1>Ejercicio 2</h1>
+    <br />
+    <script>
+      let edad;
+      do {
+        edad = +prompt("Introduce la edad del usuario", "0");
+        if (isNaN(edad) || edad > 123) {
+          alert("Intoduzca una edad valida");
+        }
+      } while (isNaN(edad) || edad > 123);
+
+      if (edad > 60) {
+        document.write(edad, " Jubilado<br>");
+      } else if (edad >= 27) {
+        document.write(edad, " Adulto<br>");
+      } else if (edad >= 13) {
+        document.write(edad, " Joven<br>");
+      } else {
+        document.write(edad, " Niño<br>");
+      }
+    </script>
+
+    <br />
+  </body>
+</html>
