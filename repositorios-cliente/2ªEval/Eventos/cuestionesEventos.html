@@ -1,0 +1,50 @@
+!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos y validación de formularios</title>
+  </head>
+  <body>
+    <section>
+      <h3 id="titulo" onClick="this" textContent="”Adios”">Hola</h3>
+      <a href="http://www.google.es" onClick="return confirm('quieres ir?')"
+        >Google</a
+      >
+      <p id="anul">Anular</p>
+    </section>
+  </body>
+  <script>
+    let tit = document.getElementById("titulo");
+    tit.addEventListener("click", ponerAdios);
+    //tit.onClick=ponerAdios;
+    function ponerAdios() {
+      event.currentTarget.innerHTML = "Adios";
+    }
+
+    function conf() {
+      let respuesta = confirm("queires ir?");
+      if (respuesta == false) {
+        event.preventDefault();
+        //o lo qu hay en linea
+      }
+    }
+
+    let a = document.querySelector("a");
+    a.addEventListener("click", conf);
+
+    //tit.removeEventListener("click", ponerAdios);
+    /*
+<div>
+    <p>
+        <span>
+        </span>
+    </p>
+</div>
+target donde se produce el evento
+//currentTarget donde esta el evento
+
+*/
+  </script>
+</html>
