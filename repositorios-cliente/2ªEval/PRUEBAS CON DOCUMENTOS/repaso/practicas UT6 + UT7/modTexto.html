@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unidad 5 - Ejercicio 2</title>
+  </head>
+  <body>
+    <h1>Modificar estilos del texto</h1>
+    <div>
+      <span>Seleccionar tamaño texto: </span>
+      <select id="tam">
+        <option value="0.8em">Pequeño</option>
+        <option value="1.2em">Mediano</option>
+        <option value="2em">Grande</option>
+      </select>
+      <span>Seleccionar color texto: </span>
+      <select id="color">
+        <option value="red">Rojo</option>
+        <option value="green">Verde</option>
+        <option value="blue">Azul</option>
+      </select>
+      <button id="actualizar">Cambiar</button>
+    </div>
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta,
+        doloremque voluptates atque ad minima blanditiis illum dolor qui
+        nesciunt? Vero cum quo eos reiciendis earum ex, voluptatem, possimus in
+        obcaecati perspiciatis nisi qui accusamus iste ipsum pariatur,
+        laboriosam harum assumenda nostrum rem ut quos voluptates et! Atque aut
+        blanditiis aliquam!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+        tempora dignissimos quisquam architecto nobis mollitia fugiat
+        exercitationem vitae officia aspernatur.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+        tempora dignissimos quisquam architecto nobis mollitia fugiat
+      </p>
+    </div>
+    <script>
+      let botonActualizar = document.getElementById("actualizar");
+      botonActualizar.onclick = function (event) {
+        let texto = document.getElementsByTagName("div")[1];
+
+        let selectTamaño = document.getElementById("tam");
+        let indiceTamaño = selectTamaño.selectedIndex;
+        let valorTamaño = selectTamaño.options[indiceTamaño].value;
+        texto.style.fontSize = valorTamaño;
+
+        let selectColor = document.getElementById("color");
+        let indiceColor = selectColor.selectedIndex;
+        let valorColor = selectColor.options[indiceColor].value;
+        texto.style.color = valorColor;
+      };
+      /*Código propio. Primera versión 
+      
+      let color = document.getElementById("color").value;
+        let tam = document.getElementById("tam").value;
+        let texto = document.getElementsByTagName("div")[1];
+        texto.style.color = color;
+        texto.style.fontSize = tam; */
+
+      /* Código de Ekeno 
+      window.onload = inicio;
+
+      function inicio() {
+        let preferencias = document.getElementsByTagName("select");
+
+        for (var i = 0; i < preferencias.length; i++) {
+          preferencias[i].addEventListener("change", actualizar);
+        }
+      }
+
+      function actualizar() {
+        let color = document.getElementById("color").value;
+        let tam = document.getElementById("tam").value;
+        let textos = document.getElementsByTagName("p");
+        for (var i = 0; i < textos.length; i++) {
+          textos[i].style.color = color;
+          textos[i].style.fontSize = tam;
+        }
+      } */
+    </script>
+  </body>
+</html>
