@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicios con grid</title>
+    <style>
+      Body {
+        display: grid;
+        color: white;
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 20vh 60vh 20vh;
+      }
+      header {
+        background-color: pink;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: -1;
+      }
+      footer {
+        grid-row-start: 3;
+        grid-row-end: -1;
+        grid-column-start: 1;
+        grid-column-end: -1;
+        background-color: powderblue;
+      }
+      #menu {
+        background-color: blueviolet;
+      }
+      #content {
+        background-color: salmon;
+      }
+    </style>
+  </head>
+  <body>
+    <header>HEADER</header>
+    <aside id="menu">MENU</aside>
+    <content id="content">CONTENT</content>
+    <footer>FOOTER</footer>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear un calendario</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        border: 1px solid black;
+        padding: 3px;
+        text-align: center;
+      }
+
+      th {
+        font-weight: bold;
+        background-color: #e6e6e6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="calendario"></div>
+
+    <script>
+      //Esto es una putísima porquería Hulio
+      function createCalendar(elem, year, month) {
+        let tabla =
+          "<table><tr><th>L</th><th>M</th><th>X</th><th>J</th><th>V</th><th>S</th><th>D</th></tr>";
+
+        let diaUno = new Date(year, month - 1);
+        let mes = diaUno.getMonth();
+        let anno = diaUno.getYear();
+        tabla += "<tr>";
+        console.log(diaUno.getDay());
+        for (let i = 0; i < diaUno.getDay(); i++) {
+          if (diaUno.getDay() == 0) {
+            for (let j = 1; j <= 6; j++) {
+              tabla += "<td></td>";
+            }
+          } else {
+            if (i == diaUno.getDay() - 1) {
+              tabla += "<td>" + diaUno.getDate() + "</td>";
+            } else {
+              tabla += "<td></td>";
+            }
+          }
+        }
+        diaUno.setDate(diaUno.getDate() + 1);
+        while (diaUno.getMonth() == mes) {
+          tabla += "<td>" + diaUno.getDate() + "</td>";
+          if (diaUno.getDay() == 0) {
+            tabla += "</tr><tr>";
+          }
+          diaUno.setDate(diaUno.getDate() + 1);
+        }
+        diaUno.setDate(diaUno.getDate() - 1);
+
+        for (let i = 0; i < diaUno.getDay(); i++) {
+          if (diaUno.getDay() == 0) {
+            continue;
+          }
+          tabla += "<td></td>";
+        }
+        elem.innerHTML = tabla;
+      }
+      let calendario = document.querySelector("#calendario");
+      createCalendar(calendario, 2012, 9);
+    </script>
+    <a href="https://plnkr.co/edit/Q4iQgj6roqbfSmUX?p=preview&preview"
+      >Solución real</a
+    >
+  </body>
+</html>

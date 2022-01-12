@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>trabajos con grid</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .wrapper {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 5px;
+      }
+      .item {
+        background: deeppink;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .item1 {
+        grid-column-start: span 2;
+      }
+      .item2 {
+        grid-column-start: 3;
+        grid-column-end: span 2;
+        grid-row: span 2;
+      }
+      .item3 {
+        grid-row-start: 2;
+        grid-row-end: span2;
+      }
+
+      .item6 {
+        grid-column-start: 3;
+        grid-column-end: span 2;
+        /*grid-row: 3/4;*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+      <div class="item item5">5</div>
+      <div class="item item6">6</div>
+    </div>
+  </body>
+</html>

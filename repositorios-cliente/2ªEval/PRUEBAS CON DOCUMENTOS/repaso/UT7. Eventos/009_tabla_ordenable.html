@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 4px;
+      }
+      th {
+        cursor: pointer;
+      }
+      th:hover {
+        background: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="grid">
+      <thead>
+        <tr>
+          <th data-type="number">Age</th>
+          <th data-type="string">Name</th>
+          <th data-type="string">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td>John</td>
+          <td>Missisipi</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Pete</td>
+          <td>Kentucky</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Ann</td>
+          <td>Ohio</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Eugene</td>
+          <td>Texas</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Ilya</td>
+          <td>Illinois</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      /***********************
+         * Requierimientos:
+            * Haz que la tabla se pueda ordenar: los clics en elementos <th> deberían ordenarla por la columna correspondiente.
+            * Cada <th> tiene su tipo de datos en el atributo: data-type="number"; data-typ="string"
+            * La función de ordenación debe manejar el orden de acuerdo al tipo de datos.
+            * Sólo los tipos "string" y "number" deben ser soportados
+         * Algoritmo
+            * Asocia el manejador de eventos a la tabla
+            * Sólo se debe tener en cuenta si el evento.target es el th (elemento.tagName)
+            * Habrá que tener en cuenta el tipo de dato para ordenar la tabla
+            * Hay que tener en cuenta la posición del th sobre el que se ha hecho clic: pos= th.cellIndex
+            *
+            * Función de ordenación:
+                * Selecciona todas las filas dentro del tbody (tbody.rows)
+                * Conviérte las filas a un array (Array.from)
+                * Crea una función de comparación para ordenar con array.sort(funcionComparacion)
+                * funcion ordenar (filaA, filaB) {
+                       if (filaA.cells[pos].innerHTML > filaB.cells[pos].innerHTML )
+                           return 1;
+                       else
+                           return -1
+                     }
+                * Añade el array ordenado al tbody con tbody.append(...arrayOrdenado)
+         * ************************/
+      let contenedor = document.getElementById("grid");
+      contenedor.onclick = function (evento) {
+        let target = evento.target;
+        if (target.tagName != "TH") {
+          return;
+        }
+        /* let pos = target.cellIndex;
+        switch (pos) {
+          case 0: //Ordenar por edad
+            ordenar(pos);
+            break;
+          case 1: //Ordenar por nombre
+            ordenar(pos);
+            break;
+        }
+
+        function ordenar(pos) {
+          let filas = document.querySelector("tbody").rows;
+          let arrayFilas = Array.from(filas);
+          arrayFilas.sort(comparar);
+        }
+        function comparar(a, b) {
+          if (a > b) return -1;
+          if (a == b) return 0;
+          if (a < b) return 1;
+        } */
+        let tipo = target.dataset.type;
+        let tbody = contenedor.getElementsByTagName("TBODY")[0];
+        let filas = tbody.rows;
+        let arrayFilas = Array.from(filas);
+        let arrayFilasOrdenado = arrayFilas.sort(sortFilas);
+        //... -> Separa el array en sus componentes, y los pasa de uno en uno.
+        tbody.append(...arrayFilasOrdenado);
+
+        function sortFilas(filaA, filaB) {
+          let pos = target.cellIndex;
+          if (tipo == "string") {
+            if (filaA.cells[pos].innerHTML > filaB.cells[pos].innerHTML) {
+              return 1;
+            } else {
+              return -1;
+            }
+          } else {
+            if (+filaA.cells[pos].innerHTML > +filaB.cells[pos].innerHTML) {
+              return 1;
+            } else {
+              return -1;
+            }
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

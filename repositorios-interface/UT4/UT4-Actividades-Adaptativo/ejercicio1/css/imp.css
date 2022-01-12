@@ -1,0 +1,20 @@
+#contenido #principal {
+  width: 100%;
+  margin-top: 15px;
+  background: #fff;
+}
+#contenido #secundario {
+  width: 100%;
+  margin: auto;
+  background: #cedbf9 url("../imagenes/fondo_columna.gif") no-repeat;
+}
+
+a {
+  content: url();
+}
+#buscador {
+  display: none;
+}
+#archivo #enlaces #categorias {
+  display: none;
+}
