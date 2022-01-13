@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>u07ev-e06_parejitas</title>
+  </head>
+  <style>
+    .escondido {
+      visibility: hidden;
+    }
+    td {
+      background-color: lightgreen;
+      width: 10vw;
+      height: 31vh;
+    }
+    img {
+      width: 10vw;
+      height: 30vh;
+    }
+  </style>
+  <body>
+    <input type="text" readonly value="0" id="puntos" />
+    <button>Reiniciar</button>
+    <table>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <script>
+      /*
+      Observaciones propias:
+      **La segunda carta no se visualiza
+      **SOLUCIONADO Si se presionan cartas ya vistas, o dos veces la misma carta, el programa explota
+      */
+      let arrImg = [
+        '<img class="escondido" src="./Simpson/AbrahamSimpson.png"/>',
+        '<img class="escondido" src="./Simpson/BartSimpson.png"/>',
+        '<img class="escondido" src="./Simpson/HomerSimpson.png"/>',
+        '<img class="escondido" src="./Simpson/LisaSimpson.png"/>',
+        '<img class="escondido" src="./Simpson/MaggieSimpson.png"/>',
+        '<img class="escondido" src="./Simpson/MargeSimpson.png"/>',
+      ];
+      let arrID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      arrImg.sort(() => 0.5 - Math.random());
+      arrID.sort(() => 0.5 - Math.random());
+      let arrComprobar = [];
+      let aciertos = 0,
+        contador = 0;
+
+      let puntos = document.getElementById("puntos");
+      let tds = document.querySelectorAll("td");
+      let i = 0;
+      for (let td of tds) {
+        td.id = arrID[i];
+        i++;
+        crearCarta(td);
+        td.addEventListener("click", girarCarta);
+      }
+
+      function crearCarta(td) {
+        let carta = td;
+        let imagen;
+        if (carta.id == 1 || carta.id == 7) {
+          imagen = arrImg[0];
+        } else if (carta.id == 2 || carta.id == 8) {
+          imagen = arrImg[1];
+        } else if (carta.id == 3 || carta.id == 9) {
+          imagen = arrImg[2];
+        } else if (carta.id == 4 || carta.id == 10) {
+          imagen = arrImg[3];
+        } else if (carta.id == 5 || carta.id == 11) {
+          imagen = arrImg[4];
+        } else if (carta.id == 6 || carta.id == 12) {
+          imagen = arrImg[5];
+        }
+        carta.innerHTML = imagen;
+      }
+      function girarCarta() {
+        let carta = event.target.closest("td");
+        contador++;
+        let img = carta.firstElementChild;
+        img.classList.remove("escondido");
+        img.style.backgroundColor = "#FFF";
+        arrComprobar[contador - 1] = img;
+        if (contador == 2) {
+          if (
+            !arrComprobar[0].classList.contains("correcta") ||
+            !arrComprobar[1].classList.contains("correcta")
+          ) {
+            if (arrComprobar[0].src == arrComprobar[1].src) {
+              puntos.value++;
+              arrComprobar[0].classList.add("correcta");
+              arrComprobar[1].classList.add("correcta");
+            } else {
+              arrComprobar[0].classList.add("escondido");
+              arrComprobar[1].classList.add("escondido");
+              img.style.backgroundColor = "lightgreen";
+            }
+          }
+          contador = 0;
+        }
+
+        if (puntos.value == 6) {
+          alert("¡Has ganado!");
+        }
+      }
+    </script>
+  </body>
+</html>

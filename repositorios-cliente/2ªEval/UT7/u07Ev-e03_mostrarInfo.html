@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>U7 - Ejercicio 3 - Mostrar / ocultar información</title>
+    <style>
+      .esconder {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Mostrar y ocultar información de una página web</h1>
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis
+        enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue,
+        commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere
+      </p>
+      <a href="#">Ocultar contenidos</a>
+    </div>
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis
+        enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue,
+        commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere
+      </p>
+      <a href="#">Ocultar contenidos</a>
+    </div>
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis
+        enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue,
+        commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere
+        vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id,
+      </p>
+      <a href="#">Ocultar contenidos</a>
+    </div>
+    <script>
+      let enlaces = document.querySelectorAll("div a");
+      for (let enlace of enlaces) {
+        enlace.addEventListener("click", ocultar);
+      }
+      function ocultar() {
+        //seleccinoa el elemento previo (parrafo de arriba)
+        let parrafo = event.target.previousElementSibling;
+        parrafo.classList.toggle("esconder");
+        let anchor = event.target;
+        if (parrafo.className == "esconder") {
+          anchor.innerHTML = "Mostrar contenidos";
+        } else {
+          anchor.innerHTML = "Ocultar cotnenidos";
+        }
+      }
+    </script>
+  </body>
+</html>
