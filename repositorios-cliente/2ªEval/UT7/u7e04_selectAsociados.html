@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unidad 7 - Ejercicio 4</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unidad 5 - Ejercicio 4</title>
-</head>
-
-<body>
+  <body>
     <form id="formu" action="#">
-        <select id="ccaa">
-            <option value="0" selected="selected">Seleccione...</option>
-            <option value="1">Castilla y León</option>
-            <option value="2">Comunidad Madrid</option>
-            <option value="3">Galicia</option>
-            <option value="4">País Vasco</option>
-        </select>
-        <select id="provincia">
-            <option value="-">-</option>
-        </select>
+      <select id="ccaa">
+        <option value="0" selected="selected">Seleccione...</option>
+        <option value="1">Castilla y León</option>
+        <option value="2">Comunidad Madrid</option>
+        <option value="3">Galicia</option>
+        <option value="4">País Vasco</option>
+      </select>
+      <select id="provincia">
+        <option value="-">-</option>
+      </select>
     </form>
-</body>
-
+    <script>
+      /*Declaración de la variable que contiene el elemento sobre el que se realizará el evento, y creación del evento*/
+      let comunidad = document.getElementById("ccaa");
+      comunidad.onchange = function (evento) {
+        let índice = comunidad.selectedIndex;
+        let arrayProvincias = [];
+        /***Borrado de los elementos creados con anterioridad, para evitar overflow***/
+        let borrado = document.querySelectorAll(
+          "#provincia option:not(:first-child)"
+        );
+        for (let elemento of borrado) {
+          elemento.remove();
+        }
+        /****************************/
+        switch (índice) {
+          case 1:
+            arrayProvincias = [
+              "Ávila",
+              "Burgos",
+              "León",
+              "Palencia",
+              "Salamanca",
+              "Segovia",
+              "Soria",
+              "Valladolid",
+              "Zamora",
+            ];
+            break;
+          case 2:
+            arrayProvincias = ["Madrid"];
+            break;
+          case 3:
+            arrayProvincias = ["Pontevedra", "A Coruña", "Lugo", "Ourense"];
+            break;
+          case 4:
+            arrayProvincias = ["Vizcaya", "Guipúzcoa", "Álava"];
+            break;
+        }
+        let provincias = document.getElementById("provincia");
+        for (let i = 0; i < arrayProvincias.length; i++) {
+          let provincia = document.createElement("option");
+          provincia.value = arrayProvincias[i].toLowerCase;
+          provincia.innerHTML = arrayProvincias[i];
+          provincias.append(provincia);
+        }
+      };
+    </script>
+  </body>
 </html>

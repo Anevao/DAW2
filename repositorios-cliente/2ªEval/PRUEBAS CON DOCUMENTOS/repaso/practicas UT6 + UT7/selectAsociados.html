@@ -24,7 +24,6 @@
       /*Declaración de la variable que contiene el elemento sobre el que se realizará el evento, y creación del evento*/
       let comunidad = document.getElementById("ccaa");
       comunidad.onchange = function (evento) {
-        let provincias = document.getElementById("provincia");
         let índice = comunidad.selectedIndex;
         let arrayProvincias = [];
         /***Borrado de los elementos creados con anterioridad, para evitar overflow***/
@@ -59,6 +58,7 @@
             arrayProvincias = ["Vizcaya", "Guipúzcoa", "Álava"];
             break;
         }
+        let provincias = document.getElementById("provincia");
         for (let i = 0; i < arrayProvincias.length; i++) {
           let provincia = document.createElement("option");
           provincia.value = arrayProvincias[i].toLowerCase;
