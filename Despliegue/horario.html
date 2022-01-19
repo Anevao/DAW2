@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horario DAW</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: black 2px solid;
+        text-align: center;
+      }
+
+      #recreo,
+      .horas {
+        background-color: blueviolet;
+      }
+      .EC {
+        background-color: aquamarine;
+      }
+      .ES {
+        background-color: burlywood;
+      }
+      .IE {
+        background-color: darkolivegreen;
+      }
+      .IW {
+        background-color: darkorange;
+      }
+      .DA {
+        background-color: darksalmon;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr class="horas">
+          <th></th>
+          <th>Lunes</th>
+          <th>Martes</th>
+          <th>Miercoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="horas">8:30- 10:15</th>
+          <td class="EC">Entorno Cliente</td>
+          <td class="EC">Entorno Cliente</td>
+          <td class="EC">Entorno Cliente</td>
+          <td class="EC">Entorno Cliente</td>
+          <td class="IW">Interfaces</td>
+        </tr>
+        <tr>
+          <th class="horas">10:20-11:10</th>
+          <td class="ES">Entorno Servidor</td>
+          <td class="IE">Iniciativa Emprendedora</td>
+          <td class="IW">Interfaces</td>
+          <td class="ES">Entorno Servidor</td>
+          <td class="IE">Iniciativa Emprendedora</td>
+        </tr>
+        <tr>
+          <th class="horas">11:10-11:40</th>
+          <td id="recreo" colspan="5">RECREO</td>
+        </tr>
+        <tr>
+          <th class="horas">11:40-12:30</th>
+          <td class="ES">Entorno servidor</td>
+          <td class="IE">Iniciativa Emprendedora</td>
+          <td class="IW">Interfaces</td>
+          <td class="ES">Entorno servidor</td>
+          <td class="ES">Entorno servidor</td>
+        </tr>
+        <tr>
+          <th class="horas">12:35-14:20</th>
+          <td class="DA">Despliegue</td>
+          <td class="IW">Interfaces</td>
+          <td class="ES">Entorno Servidor</td>
+          <td class="DA">Despliegue</td>
+          <td class="ES">Entorno servidor</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
