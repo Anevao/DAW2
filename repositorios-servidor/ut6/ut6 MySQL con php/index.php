@@ -7,7 +7,7 @@
         <title>Formulario</title>
     </head>
     <body>
-        <form method="post" action="004b_formulario_operaciones.php">
+        <form method="post" action="consultasParametrizadas.php">
             <label for='id'>Id: </label>
             <input type='number' name='id' min='10'/>
             <br>
