@@ -7,8 +7,8 @@
     <title>Discos</title>
     <style>
       .error {
-        border: 3px red solid;
-        background: rgb(153, 149, 149);
+        border: 1.5px red solid;
+        background: rgb(155, 146, 146);
         color: red;
       }
     </style>
@@ -17,6 +17,7 @@
     <form>
       <ul>
         <li>
+          <!--El elemento for hace que un label responda al click como un elemento de entrada asociado -->
           <label for="nombreDisco">Nombre del Disco:</label>
           <input type="text" name="nombreDisco" />
           <div id="nombreDisco"></div>
@@ -50,61 +51,60 @@
       <div id="boton"></div>
     </form>
     <script>
-      //evento de ejecucion del script una vez se haya cargado el arbol de elementos(nodos<p><div><h1>etc..)
+      //El documento se ejecutara cuando los nodos esten cargados (<p><div><h1>etc..)
       document.addEventListener("DOMContentLoaded", programa);
 
       function programa() {
+        //primer formulario del documento
         let formulario = document.forms[0];
+
+        //chequeamos el nombre del disco, uusamos onchage que es a cada cambio, pq blur
+        //q es perder el foco no puede recibir un preventeventdefault
         let nombreDisco = formulario.elements.nombreDisco;
-        nombreDisco.onchange = function () {
-          //this=nombreDisco
-          if (!this.value) {
-            //no se puede prevenir el blur ojocuidao
-            //event.preventDefault();
-          } else {
-            if (campo20(this, nombreDisco, "mas de 20 caract")) {
-              event.preventDefault();
-            }
+        nombreDisco.onchange = function (evento) {
+          //en campo20 se revisa si tiene 20 chars, en el if se hace que no se vaya del foco
+          if (
+            campo20(
+              this,
+              "nombreDisco",
+              "Formato del campo 'Nombre del Disco' no válido (+20 caracteres)"
+            )
+          ) {
+            evento.preventDefault();
           }
         };
-        //funcoin aux poner error
-        function ponerError(nameCampo, mensaje) {
-          let campoError = document.getElementById(nameCampo);
-          campoError.innerHTML = mensaje;
-          campoError.classList.add("error");
-        }
-
-        //funcoin aux quitar error
-        function quitarError(campoError) {
-          campoError.innerHTML = "";
-        }
-
-        function campo20(campo, nameCampo, mensaje) {
-          let campoError = document.getElementById(nameCampo);
-          if (campo.value.length > 20) {
-            campoError.innerHTML = mensaje;
-            campoError.classList.add("error");
-            campo.focus();
-            return false;
-          } else {
-            campoError.innerHTML = "";
-            nameCampo.classList.remove("error");
-            return true;
-          }
-        }
 
         let compositor = formulario.elements.compositor;
-        compositor.onblur = function () {
-          if (!compositor.value) {
-            event.preventDefault();
-            //Añadir esto a la validación con submit.
-          } else {
-            campo20(this, compositor, " el nombre tiene mas de 20 caract");
+        compositor.onchange = function (evento) {
+          //this es compositor (formulario.elements.compositor)
+          if (
+            campo20(
+              this,
+              "compositor",
+              "Formato del campo 'Grupo/Cantante' no válido (+20 caracteres)"
+            )
+          ) {
+            evento.preventDefault();
           }
         };
 
+        //funcion generica para combrobar si tiene 20 chars
+        //campo es el elemento, nombreCampo es el id del campo para reconocerlo, mensaje es el error
+        function campo20(campo, nombreCampo, mensaje) {
+          let error = document.getElementById(nombreCampo);
+          if (campo.value.length > 20) {
+            error.innerHTML = mensaje;
+            campo.classList.add("error");
+            return true;
+          } else {
+            error.innerHTML = "";
+            campo.classList.remove("error");
+            return false;
+          }
+        }
+
         let annoPublicacion = formulario.elements.anno;
-        annoPublicacion.onblur = function () {
+        annoPublicacion.onchange = function () {
           let errorAnno = document.getElementById("anno");
           if (!Number(annoPublicacion.value)) {
             errorAnno.innerHTML =
@@ -125,7 +125,7 @@
         };
 
         let genero = formulario.elements.genero;
-        genero.onblur = function () {
+        genero.onchange = function () {
           let errorGenero = document.getElementById("genero");
           let valorGenero = genero.value.toLowerCase();
           if (
@@ -140,19 +140,17 @@
             errorGenero.innerHTML =
               "Género no válido (Valores admitidos: Pop, Rock, Punk, Indie)";
             genero.classList.add("error");
-            genero.focus();
             return;
           }
         };
 
         let localizacion = formulario.elements.localizacion;
-        localizacion.onblur = function () {
+        localizacion.onchange = function () {
           let errorlocalizacion = document.getElementById("localizacion");
           if (localizacion.value == "" || localizacion.value < 0) {
             errorlocalizacion.innerHTML =
               "Número de estantería no válido o nulo";
             localizacion.classList.add("error");
-            localizacion.focus();
             return;
           } else {
             errorlocalizacion.innerHTML = "";
@@ -160,9 +158,11 @@
           }
         };
 
-        let botonGuardado = formulario.elements.guardar;
         formulario.onsubmit = function (event) {
-          0;
+          //let primerCampo = null;
+          //if(!nombreDisco.value){
+          //ponerError(nombreDisco, mensaje);
+          //}
           if (!nombreDisco.value || !compositor.value) {
             event.preventDefault();
             let errorBoton = document.getElementById("boton");
@@ -180,3 +180,5 @@
     </script>
   </body>
 </html>
+© 2022 GitHub, Inc. Terms Privacy Security Status Docs Contact GitHub Pricing
+API Training Blog About
