@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let user = {
+        name: "John Smith",
+        age: 35,
+      };
+      let json = JSON.stringify(user);
+      alert(json);
+      let nuevouser = JSON.parse(json);
+      alert(nuevouser.name);
+
+      let room = {
+        number: 23,
+      };
+
+      let meetup = {
+        title: "Conference",
+        occupiedBy: [{ name: "John" }, { name: "Alice" }],
+        place: room,
+      };
+
+      // referencias circulares
+      room.occupiedBy = meetup;
+      meetup.self = meetup;
+
+      alert(
+        JSON.stringify(meetup, function replacer(key, value) {
+          /* tu código */
+          if (key == "self" || key == "occupiedBy") {
+            return undefined;
+          }
+          return value;
+        })
+      );
+
+      /* el resultado debería ser:
+{
+  "title":"Conference",
+  "occupiedBy":[{"name":"John"},{"name":"Alice"}],
+  "place":{"number":23}
+}
+*/
+    </script>
+  </head>
+  <body></body>
+</html>
