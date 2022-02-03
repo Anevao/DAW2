@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let obj;
+      function peticionServer() {
+        fetch("./portafolio.json")
+          // .a continuación, se ejecuta cuando el servidor remoto responde
+          .then(function (response) {
+            // response.text() devuelve una nueva promesa que se resuelve con el texto de respuesta completo
+            // cuando se carga
+            return response.text();
+          })
+          .then(function (text) {
+            // ...y aquí está el contenido del archivo remoto
+            obj = JSON.parse(text); // {"name": "iliakan", isAdmin: true}
+            genera_tabla(obj);
+          });
+      }
+      peticionServer();
+
+      //let obj = JSON.parse(peticionServer("./portafolio.json"));
+      function genera_tabla(obj) {
+        // Obtener la referencia del elemento body
+        let body = document.getElementsByTagName("body")[0];
+
+        // Crea un elemento <table> y un elemento <tbody>
+        var tabla = document.createElement("table");
+        var tblBody = document.createElement("tbody");
+
+        // Crea las celda
+        for (var i = 0; i < obj.fechas.length; i++) {
+          // Crea las hileras de la tabla
+          var fila = document.createElement("tr");
+
+          var celdaTitulo = document.createElement("td");
+          var textoCeldaTitulo = document.createTextNode(obj.fechas[i].titulo);
+          celdaTitulo.appendChild(textoCeldaTitulo);
+          fila.appendChild(celdaTitulo);
+          var celdaFecha = document.createElement("td");
+          var textoCeldaFecha = document.createTextNode(obj.fechas[i].fecha);
+          celdaFecha.appendChild(textoCeldaFecha);
+          fila.appendChild(celdaFecha);
+          var celdaTexto = document.createElement("td");
+          var textoCeldaTexto = document.createTextNode(obj.fechas[i].texto);
+          celdaTexto.appendChild(textoCeldaTexto);
+          fila.appendChild(celdaTexto);
+
+          // agrega la fila al final de la tabla (al final del elemento tblbody)
+          tblBody.appendChild(fila);
+        }
+
+        // posiciona el <tbody> debajo del elemento <table>
+        tabla.appendChild(tblBody);
+        // appends <table> into <body>
+        body.appendChild(tabla);
+        // modifica el atributo "border" de la tabla y lo fija a "2";
+        tabla.setAttribute("border", "2");
+      }
+    </script>
+  </body>
+</html>
