@@ -100,18 +100,21 @@
         img.style.backgroundColor = "#FFF";
         arrComprobar[contador - 1] = img;
         if (contador == 2) {
+          //quitar evento
           if (
             !arrComprobar[0].classList.contains("correcta") ||
             !arrComprobar[1].classList.contains("correcta")
           ) {
-            if (arrComprobar[0].src == arrComprobar[1].src) {
+            if (arrComprobar[0].src === arrComprobar[1].src) {
               puntos.value++;
               arrComprobar[0].classList.add("correcta");
               arrComprobar[1].classList.add("correcta");
             } else {
-              arrComprobar[0].classList.add("escondido");
-              arrComprobar[1].classList.add("escondido");
-              img.style.backgroundColor = "lightgreen";
+              setTimeout(function () {
+                arrComprobar[0].classList.add("escondido");
+                arrComprobar[1].classList.add("escondido");
+                img.style.backgroundColor = "lightgreen";
+              }, 400);
             }
           }
           contador = 0;
