@@ -7,21 +7,21 @@
     <title>u07ev-e06_parejitas</title>
   </head>
   <style>
-    .escondido {
+    .no {
       visibility: hidden;
     }
     td {
-      background-color: lightgreen;
-      width: 10vw;
-      height: 31vh;
+      background-color: black;
+      width: 110px;
+      height: 180px;
     }
-    img {
-      width: 10vw;
-      height: 30vh;
-    }
+    /*img {
+      width: 110px;
+      height: 180px;
+    }*/
   </style>
   <body>
-    <input type="text" readonly value="0" id="puntos" />
+    <input type="text" readonly value="0" id="puntuacion" />
     <button>Reiniciar</button>
     <table>
       <tr>
@@ -44,18 +44,13 @@
       </tr>
     </table>
     <script>
-      /*
-      Observaciones propias:
-      **La segunda carta no se visualiza
-      **SOLUCIONADO Si se presionan cartas ya vistas, o dos veces la misma carta, el programa explota
-      */
       let arrImg = [
-        '<img class="escondido" src="./Simpson/AbrahamSimpson.png"/>',
-        '<img class="escondido" src="./Simpson/BartSimpson.png"/>',
-        '<img class="escondido" src="./Simpson/HomerSimpson.png"/>',
-        '<img class="escondido" src="./Simpson/LisaSimpson.png"/>',
-        '<img class="escondido" src="./Simpson/MaggieSimpson.png"/>',
-        '<img class="escondido" src="./Simpson/MargeSimpson.png"/>',
+        '<img class="no" src="./Simpson/AbrahamSimpson.png"/>',
+        '<img class="no" src="./Simpson/BartSimpson.png"/>',
+        '<img class="no" src="./Simpson/HomerSimpson.png"/>',
+        '<img class="no" src="./Simpson/LisaSimpson.png"/>',
+        '<img class="no" src="./Simpson/MaggieSimpson.png"/>',
+        '<img class="no" src="./Simpson/MargeSimpson.png"/>',
       ];
       let arrID = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
       arrImg.sort(() => 0.5 - Math.random());
@@ -64,8 +59,9 @@
       let aciertos = 0,
         contador = 0;
 
-      let puntos = document.getElementById("puntos");
+      let puntos = document.getElementById("puntuacion");
       let tds = document.querySelectorAll("td");
+
       let i = 0;
       for (let td of tds) {
         td.id = arrID[i];
@@ -92,26 +88,32 @@
         }
         carta.innerHTML = imagen;
       }
+      let cartaVolteada = "";
       function girarCarta() {
-        let carta = event.target.closest("td");
+        if (cartavolteada != "") {
+          cartaVolteada.addEventListener("click", girarCarta);
+        }
+        let carta = event.target.closest("td"); //sin closets
+        let cartaVolteada = event.target.closest("td");
         contador++;
         let img = carta.firstElementChild;
-        img.classList.remove("escondido");
+        img.classList.remove("no");
         img.style.backgroundColor = "#FFF";
+        carta.removeEventListener("click", girarCarta);
         arrComprobar[contador - 1] = img;
         if (contador == 2) {
           if (
-            !arrComprobar[0].classList.contains("correcta") ||
-            !arrComprobar[1].classList.contains("correcta")
+            !arrComprobar[0].classList.contains("si") ||
+            !arrComprobar[1].classList.contains("si")
           ) {
             if (arrComprobar[0].src == arrComprobar[1].src) {
               puntos.value++;
-              arrComprobar[0].classList.add("correcta");
-              arrComprobar[1].classList.add("correcta");
+              arrComprobar[0].classList.add("si");
+              arrComprobar[1].classList.add("si");
             } else {
-              arrComprobar[0].classList.add("escondido");
-              arrComprobar[1].classList.add("escondido");
-              img.style.backgroundColor = "lightgreen";
+              arrComprobar[0].classList.add("no");
+              arrComprobar[1].classList.add("no");
+              img.style.backgroundColor = "black";
             }
           }
           contador = 0;
