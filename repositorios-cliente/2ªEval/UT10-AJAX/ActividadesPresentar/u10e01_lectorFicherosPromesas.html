@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Ejercicio1UT10</title>
   </head>
-  <body></body>
+
+  <body>
+
+    <input name="url" id="url"></input>
+    <input type="button" id="mostrar" value="Mostrar"></input>
+    <textarea id="txtArea">        
+    </textarea>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", iniciar);
+
+        function iniciar() {
+        //almacenamos en una variable la url
+        let url = window.location;
+        //creamos variable para el input text
+        let txt = document.getElementById("url");
+        //le cargamos el texto de la url
+        txt.value = url;
+        //creo la variable para el txtarea
+        let txtArea = document.getElementById("txtArea");
+        //variable para el boton
+        let mostrar = document.getElementById("mostrar");
+
+        //meto el codigo del fetch en la funcion onclick
+        mostrar.onclick =function(e){
+        fetch(label.value)
+        .then(function (response) {
+          if (response.ok) {
+            return response.text();
+          } else {
+            return (
+              "Error " +
+              response.status +
+              " al intentar acceder al fichero " +
+              url
+            );
+          }
+        })
+        .then(function (text) {
+            let txtArea = document.getElementById("txtArea");
+            txtArea.innerHTML=text;
+            //si fuese creado insertaria despues de algo
+            //document.body.insertBefore(txtArea, mostrar);
+        });
+        }
+      }
+    </script>
+  </body>
 </html>
