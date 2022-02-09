@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>u09e02_test</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      h2 {
+        font-size: 15px;
+        font-weight: lighter;
+      }
+      form {
+          
+        /*width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;*/
+        background-image: "tjeta.jpg";
+        border: black solid 2px;
+        margin: 1em;
+
+      }
+      .noRespondida {
+        border: 2px red solid;
+        background-color: lightcoral;
+      }
+      .tick::after {
+        content: "✓";
+        color: rgb(0, 196, 0);
+      }
+      .cross::after {
+        content: "✘";
+        color: red;
+      }
+    </style>
+  </head>
+  <header>
+    <img alt="titulo" src="calamar.png" name="titulo"></img>
+  </header>
+  <body>
+    <h1>
+      Vamos a comprobar cuanto sabes de la serie coreana del momento, Squid game, traducida en los paises de habla hispana como El juego del calamar.
+    </h1>
+    <form>
+      <form id="primera">
+        <h2>
+          Primera pregunta. ¿Cuántos jugadores participan en el juego del calamar?
+        </h2>
+        <input
+          type="radio"
+          name="primera"
+          value="463"
+          class="incorrecta"
+        >463</input>
+        456<input
+          type="radio"
+          name="primera"
+          value="453"
+          class="correcta"
+        />
+
+        500<input
+          type="radio"
+          name="primera"
+          value="500"
+          class="incorrecta"
+        />
+      </form>
+      <form id="segunda">
+        <h2>Segunda pregunta. ¿Cual es la cuarta prueba del concurso?</h3>
+        La colmena<input
+          type="radio"
+          name="segunda"
+          value="colmena"
+          class="incorrecta"
+        />
+
+        Canales reales<input
+          type="radio"
+          name="segunda"
+          value="canales"
+          class="incorrecta"
+        />
+        <br />
+        Límite del reino<input
+          type="radio"
+          name="segunda"
+          value="limite"
+          class="correcta"
+        />
+      </form>
+      <form id="tercera">
+        <h2>
+          Tercera pregunta. ¿De donde es originario el juego final del concurso?
+        </h2>
+        10<input type="radio" name="tercera" value="10" class="incorrecta" />
+        <br />
+        4<input type="radio" name="tercera" value="4" class="correcta" />
+        <br />
+        7<input type="radio" name="tercera" value="7" class="incorrecta" />
+      </form>
+      <form id="cuarta">
+        <h2>Cuarta pregunta. ¿De que color tiene el pelo nuestro protagonista al final de la serie?</h2>
+        Rojo<input
+          type="radio"
+          name="cuarta"
+          value="rojo"
+          class="correcta"
+        />
+        <br />
+         Negro<input
+          type="radio"
+          name="cuarta"
+          value="negro"
+          class="incorrecta"
+        />
+        <br />
+        Amarillo<input type="radio" name="cuarta" value="amarillo" class="incorrecta" />
+      </form>
+      <form id="quinta">
+        <h2>
+          Quinta pregunta. ¿Cuántas personas han logrado pasarse el 5.º panteón
+          sin recibir daño (<em>hitless</em>)?
+        </h2>
+        13<input type="radio" name="quinta" value="13" class="incorrecta" />
+        <br />
+        1<input type="radio" name="quinta" value="1" class="correcta" />
+        <br />
+        5<input type="radio" name="quinta" value="5" class="incorrecta" />
+      </form>
+      <input type="submit" name="comprobar" value="COMPROBAR RESPUESTAS" />
+    </form>
+    <script>
+      document.addEventListener("DOMContentLoaded", iniciar);
+
+      function iniciar() {
+        let formulario = document.forms[0];
+        formulario.onsubmit = function (evento) {
+          evento.preventDefault();
+          let primeraPregunta = formulario.elements.primera.value;
+          let segundaPregunta = formulario.elements.segunda.value;
+          let terceraPregunta = formulario.elements.tercera.value;
+          let cuartaPregunta = formulario.elements.cuarta.value;
+          let quintaPregunta = formulario.elements.quinta.value;
+
+          if (
+            !primeraPregunta ||
+            !segundaPregunta ||
+            !terceraPregunta ||
+            !cuartaPregunta ||
+            !quintaPregunta
+          ) {
+            let preguntaNoRespondida;
+            if (!primeraPregunta) {
+              preguntaNoRespondida = document.getElementById("primera");
+              preguntaNoRespondida.classList.add("noRespondida");
+            } else {
+              document
+                .getElementById("primera")
+                .classList.remove("noRespondida");
+            }
+            if (!segundaPregunta) {
+              preguntaNoRespondida = document.getElementById("segunda");
+              preguntaNoRespondida.classList.add("noRespondida");
+            } else {
+              document
+                .getElementById("segunda")
+                .classList.remove("noRespondida");
+            }
+            if (!terceraPregunta) {
+              preguntaNoRespondida = document.getElementById("tercera");
+              preguntaNoRespondida.classList.add("noRespondida");
+            } else {
+              document
+                .getElementById("tercera")
+                .classList.remove("noRespondida");
+            }
+            if (!cuartaPregunta) {
+              preguntaNoRespondida = document.getElementById("cuarta");
+              preguntaNoRespondida.classList.add("noRespondida");
+            } else {
+              document
+                .getElementById("cuarta")
+                .classList.remove("noRespondida");
+            }
+            if (!quintaPregunta) {
+              preguntaNoRespondida = document.getElementById("quinta");
+              preguntaNoRespondida.classList.add("noRespondida");
+            } else {
+              document
+                .getElementById("quinta")
+                .classList.remove("noRespondida");
+            }
+
+            alert("Error: Faltan preguntas por responder");
+          } else {
+            let contadorCorrectas = 0;
+            if (primeraPregunta == "3M") {
+              contadorCorrectas++;
+            }
+            if (segundaPregunta == "limite") {
+              contadorCorrectas++;
+            }
+            if (terceraPregunta == "4") {
+              contadorCorrectas++;
+            }
+            if (cuartaPregunta == "zote") {
+              contadorCorrectas++;
+            }
+            if (quintaPregunta == "1") {
+              contadorCorrectas++;
+            }
+            if (contadorCorrectas == 5) {
+              alert("¡Felicidades! ¡Acertaste todas!");
+            } else {
+              alert("Ha contestado correctamente:" + contadorCorrectas + "/5");
+            }
+            let campos = document.getElementsByTagName("fieldset");
+            for (let pregunta of campos) {
+              pregunta.classList.remove("noRespondida");
+            }
+            let correctas = document.getElementsByClassName("correcta");
+            let incorrectas = document.getElementsByClassName("incorrecta");
+            for (let respuestaCorrecta of correctas) {
+              respuestaCorrecta.classList.add("tick");
+            }
+            for (let respuestaIncorrecta of incorrectas) {
+              respuestaIncorrecta.classList.add("cross");
+            }
+          }
+        };
+      }
+    </script>
+  </body>
+</html>

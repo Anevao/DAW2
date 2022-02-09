@@ -19,29 +19,30 @@
     <form>
       <ul>
         <li>
+          <!--El elemento for hace que un label responda al click como un elemento de entrada asociado -->
           <label for="nombreDisco">Nombre del Disco:</label>
           <input type="text" name="nombreDisco" />
-          <span id="nombreDisco"></span>
+          <div id="nombreDisco"></div>
         </li>
         <li>
           <label for="compositor">Grupo / Cantante</label>
           <input type="text" name="compositor" />
-          <span id="compositor"></span>
+          <div id="compositor"></div>
         </li>
         <li>
           <label for="anno">Año de Publicación:</label>
           <input type="text" name="anno" />
-          <span id="anno"></span>
+          <div id="anno"></div>
         </li>
         <li>
           <label for="genero">Género Musical</label>
           <input type="text" name="genero" />
-          <span id="genero"></span>
+          <div id="genero"></div>
         </li>
         <li>
           <label for="localizacion">Localización</label>
           <input type="text" name="localizacion" />
-          <span id="localizacion"></span>
+          <div id="localizacion"></div>
         </li>
         <li>
           <label for="prestado">¿Prestado?</label>
@@ -49,18 +50,22 @@
         </li>
       </ul>
       <input type="submit" name="guardar" value="Guardar" />
-      <span id="boton"></span>
+      <div id="boton"></div>
     </form>
     <script>
-      //Mejoras de calidad:
-      //Añadir una función que cree errores y borre errores
+      //El documento se ejecutara cuando los nodos esten cargados (<p><div><h1>etc..)
       document.addEventListener("DOMContentLoaded", programa);
 
       function programa() {
+        //selecciona el primer formulario del documento
         let formulario = document.forms[0];
 
+        //chequeamos el nombre del disco, uusamos onchage que es a cada cambio, pq blur
+        //q es perder el foco no puede recibir un preventeventdefault
         let nombreDisco = formulario.elements.nombreDisco;
         nombreDisco.onchange = function (evento) {
+          //asignamos a una variable una funcion generica q hemos hecho para chequear que el campo tenga
+          //20 caracteres, amandamos el this que es nombre disco
           let ok = campo20(
             this,
             "nombreDisco",
@@ -83,6 +88,7 @@
           }
         };
 
+        //funcion generica hecha para comprobar que tenga menos de 20 caracteres
         function campo20(campo, campoError, mensaje) {
           if (campo.value.length > 20) {
             mostrarError(campo, campoError, mensaje);
