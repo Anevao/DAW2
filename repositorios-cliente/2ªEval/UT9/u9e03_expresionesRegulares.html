@@ -62,70 +62,32 @@
 
         //se activa al pulsar el input tipo submit del form
         formulario.onsubmit = function (evento) {
-          //Creación del mensaje de error
-          function mostrarError(campo, campoError, mensaje) {
-            let error = document.getElementById(campoError);
-            error.textContent = "⚠" + mensaje;
-            campo.classList.add("alerta");
-          }
-          //Ocultación del error
-          function quitarError(campo, campoError) {
-            let error = document.getElementById(campoError);
-            error.textContent = "";
-            campo.classList.remove("alerta");
-          }
-
           //creamos una variable que es el textinput del form
           let fechaCreacion = formulario.elements.fechaCreacion;
-
-          //comprueba si el campo fechacreacion tiene algun dato introducido
-          if (fechaCreacion.value) {
-            let validadorFecha =
-              //comienza la expresion con /^
-              //los numeros entre corchetes da un rango de numeros
-              //la | es el OR de toda la vida
-              //el 3 [0-1] es un 3 literal seguido de un numero del 0 al 1
-              //  la \es para que el siguiente caracter le lea sin dar fallo(/)
-              //la expresiones entre llaves es para que se repita X numero de veces ej [0-9]{4} 4num del0al9
-              //acaba $/
-              /^([0-2][0-9]|3[0-1])\/(0[0-9]|1[0-2])\/[0-9]{4}$/;
-            if (!validadorFecha.test(fechaCreacion.value)) {
-              //esto evita que el submit se efectue
-              evento.preventDefault();
-              mostrarError(
-                fechaCreacion,
-                "fechaCreacion",
-                "Introduzca una fecha válida, por favor"
-              );
-            } else {
-              //si llega aqui es que lo ha hecho bien y si hubiese un error lo quita
-              quitarError(fechaCreacion, "fechaCreacion");
-            }
-          }
-          //si fechacreacion.value es false significa que el campo esta vacio y le pone que rellene el campo
-          else {
-            mostrarError(fechaCreacion, "fechaCreacion", "Campo obligatorio");
-            evento.preventDefault();
-          }
-
+          //comienza la expresion con /^
+          //los numeros entre corchetes da un rango de numeros
+          //la | es el OR de toda la vida
+          //el 3 [0-1] es un 3 literal seguido de un numero del 0 al 1
+          //  la \es para que el siguiente caracter le lea sin dar fallo(/)
+          //la expresiones entre llaves es para que se repita X numero de veces ej [0-9]{4} 4num del0al9
+          //acaba $/
+          let validadorFecha =
+            /^([0-2][0-9]|3[0-1])\/(0[0-9]|1[0-2])\/[0-9]{4}$/;
+          validador(fechaCreacion, "fechaCreacion", validadorFecha);
+          //variable cocinero con lo que hay en el input
           let cocinero = formulario.elements.cocinero;
-          if (cocinero.value) {
-            let validadorCocinero = /^[A-Z]{2}\W[0-9]{4}$/;
-            if (!validadorCocinero.test(cocinero.value)) {
-              evento.preventDefault();
-              mostrarError(
-                cocinero,
-                "cocinero",
-                "Formato de cocinero no válido"
-              );
-            } else {
-              quitarError(cocinero, "cocinero");
-            }
-          }
+          // start /^
+          //Luego 2 caracteres en un rango de letras mayusculas
+          // \W significa un simbolo cualquiera que sea
+          // y el 4 caracteres de numero entre 1 y 9
+          let validadorCocinero = /^[A-Z]{2}\W[0-9]{4}$/;
+          validador(cocinero, "cocinero", validadorCocinero);
 
+          //var destinatario
           let destinatario = formulario.elements.destinatario;
-          if (destinatario.value) {
+          // /^ luego 2o3(la coma) letras mayus
             let validadorDestinatario = /^[A-Z]{2,3}_[a-z]{1,}:[0-9]{4}$/;
+            validador(destinatario, "destinatario", validadorDestinatario);
             if (!validadorDestinatario.test(destinatario.value)) {
               evento.preventDefault();
               mostrarError(
@@ -252,6 +214,47 @@
             );
           }
         };
+      }
+      //FUNCIONES AUXILIARES
+      let fechaCreacion = formulario.elements.fechaCreacion;
+
+      //funcion validadora, le enviamos el elemento input el campo donde se trabaja y la expresion regular
+      function validador(elemento, campo, expReg) {
+        //comprueba si el input del elemento tiene algun dato introducido
+        if (elemento.value) {
+          //testea si el formato del valor del elemento input y la exp regular son compatibles
+          if (!expReg.test(elemento.value)) {
+            //esto evita que el submit se efectue
+            evento.preventDefault();
+            mostrarError(
+              elemento,
+              campo,
+              "Introduzca una formato válido, por favor"
+            );
+          } else {
+            //si llega aqui es que lo ha hecho bien y si hubiese un error lo quita
+            quitarError(elemento, campo);
+            alert(campo + "correcto");
+          }
+        }
+        //si fechacreacion.value es false significa que el campo esta vacio y le pone que rellene el campo
+        else {
+          mostrarError(elemento, campo, "Campo obligatorio");
+          evento.preventDefault();
+        }
+      }
+
+      //Creación del mensaje de error
+      function mostrarError(campo, campoError, mensaje) {
+        let error = document.getElementById(campoError);
+        error.textContent = "⚠" + mensaje;
+        campo.classList.add("alerta");
+      }
+      //Ocultación del error 285
+      function quitarError(campo, campoError) {
+        let error = document.getElementById(campoError);
+        error.textContent = "";
+        campo.classList.remove("alerta");
       }
     </script>
   </body>
