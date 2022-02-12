@@ -274,7 +274,7 @@
         botonErrores.addEventListener("click", borrarErrores);
 
         function borrarErrores(evento) {
-          document.cookie = "Errores = 0; max-age=60";
+          document.cookie = "Errores = 0; max-age=3600";
           errores.textContent = document.cookie;
           contadorErrores = 0;
         }
