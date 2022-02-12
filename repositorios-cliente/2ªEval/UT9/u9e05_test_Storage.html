@@ -157,25 +157,27 @@
       <span id="errores"></span>
     </form>
     <script>
+    //------------------------------------------------------------------------
+    //-----------------IMPORTANTE LEER----------------------------------------
+    //-------respuesta a la pregunta del enunciado----------------------------
+    //------------------------------------------------------------------------
+    //La respuesta a la pregunta del ejercicio es, localStorage porque queremos que perdure
+    //aunque cerremos el navegador y damos la opcion de borrar los datos con el boton de borrado
       document.addEventListener("DOMContentLoaded", iniciar);
       //funcion generica para comprobar si contesto algun radio buton
       
       function iniciar() {
         let contadorErrores;
         let errores = document.getElementById("errores");
-        if (
-          //Chequea si hay en las cookies, alguna con el nombre "Errores"
-          document.cookie.split(";").some((item) => item.trim().startsWith("Errores="))
-        ) {
-          //si la hay, iguala el contador de errores con el numero almacenado en esa cookie
-          const valorCookie = document.cookie.split("; ").find((row) => row.startsWith("Errores=")).split("=")[1];
-          contadorErrores = valorCookie;
+        //Comprueba si existe localStorage.
+        if (localStorage.getItem("errores")) {
+            const valorLS = localStorage.getItem("errores");
+            contadorErrores = valorLS;
         } else {
-          //si no, pues ponemos el contador a 0 y la creamos, con una vida de 1 min
-          contadorErrores = 0;
-          document.cookie = `Errores = ${contadorErrores}; max-age=360`;
+            contadorErrores = 0;
+            localStorage.setItem("errores", contadorErrores);
         }
-        errores.textContent = document.cookie;
+        errores.textContent = "Errores = " + localStorage.getItem("errores");
 
 
         //Selecciona el unico form
@@ -215,14 +217,14 @@
                 }
           }
           function quitarFondoRojo(){
-          let campos = document.getElementsByTagName("fieldset"); 
-            for (let pregunta of campos) {
-              pregunta.classList.remove("noRespondida");
+            let campos = document.getElementsByTagName("fieldset"); 
+                for (let pregunta of campos) {
+                pregunta.classList.remove("noRespondida");
+                }
             }
-         }
           //actualiza los errores
-          document.cookie = `Errores = ${contadorErrores}; max-age=360`;
-          errores.textContent = document.cookie;
+          localStorage.setItem("errores", contadorErrores);
+          errores.textContent ="Errores = " + localStorage.getItem("errores");
 
           if (contadorCorrectas == 5) {
             alert("¡Felicidades! ¡Eres un maestro sobre esta serie!");
@@ -246,10 +248,9 @@
           botonErrores.addEventListener("click", borrarErrores);
 
           function borrarErrores(evento) {
-            document.cookie = "Errores = 0; max-age=3600";
-            errores.textContent = document.cookie;
-            contadorErrores = 0;
-          }
+          localStorage.removeItem("errores");
+          errores.textContent = "";
+          contadorErrores = 0;}
         };
     </script>
   </body>
