@@ -4,15 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>u09e06_repaso</title>
+    <title>u9e06_repaso</title>
     <style>
       span {
         color: red;
       }
+      .alerta {
+        background-color: lightcoral;
+        border: 2px solid red;
+      }
     </style>
   </head>
   <body>
-    <span id="reservas"></span>
     <form>
       <ul>
         <li>
@@ -47,7 +50,8 @@
       <input type="button" name="mostrar" value="Mostrar" />
       <input type="button" name="salir" value="Salir" />
     </form>
-    <span id="precio"></span>
+    <div id="precio"></div>
+    <div id="reservas"></div>
     <script>
       class Reserva {
         constructor(nombre, dni, numPersonas, cocina, numSocio) {
@@ -58,6 +62,7 @@
           this.numSocio = numSocio;
         }
       }
+
       let formulario = document.forms[0];
       let arrayDatos = [];
       let conCocina = 0,
@@ -73,6 +78,7 @@
         MAXIMO_SALAS_SIN_COCINA = 3;
 
       let campoPrecio = document.getElementById("precio");
+      let campoErr = document.getElementById("errorgeneral");
 
       let botónReserva = formulario.elements.reservar;
       botónReserva.addEventListener("click", reservar);
@@ -91,16 +97,17 @@
           if (reservaCorrecta) {
             conCocina = 0;
             sinCocina = 0;
-            ocultarError("errorGeneral");
+            quitarError(campoErr, "errorGeneral");
             arrayDatos.push(nuevaReserva);
             campoPrecio.textContent =
               "Precio a pagar: " + calcularPrecio(nuevaReserva);
           }
         }
       }
+      //precio de cocina y sin ella y el if de si hay descuento por ser socio
       function calcularPrecio(nuevaReserva) {
         let precio = 0;
-        if (nuevaReserva.cocina == true) {
+        if (nuevaReserva.cocina) {
           precio = 150;
         } else {
           precio = 100;
@@ -110,26 +117,34 @@
         }
         return precio;
       }
+
       function comprobarReserva(nuevaReserva) {
+        //si el array esta vacio me lo salto todo
         if (arrayDatos.length != 0) {
+          //recorro el array de objetos
           for (let reserva of arrayDatos) {
+            //comparo el dni introducido con el dni de la BD, si esta repetido error +false
             if (reserva.dni == campoDNI.value) {
               mostrarError(
+                campoDNI,
                 "errorGeneral",
                 "El DNI introducido no puede reservar más"
               );
               return false;
             }
-            if (reserva.cocina == true) {
+            //ademas voy contado cuantos hay con cocina y sin ella
+            if (reserva.cocina) {
               conCocina++;
             } else {
               sinCocina++;
             }
+            //si en algun momento nos pasamos de las salas maximas error+false
             if (
               conCocina == MAXIMO_SALAS_CON_COCINA ||
               sinCocina == MAXIMO_SALAS_SIN_COCINA
             ) {
               mostrarError(
+                campoErr,
                 "errorGeneral",
                 "No hay salas disponibles para reserva"
               );
@@ -137,6 +152,7 @@
             }
           }
         }
+        //si nada de lo anterior falla -> final feliz
         return true;
       }
 
@@ -144,16 +160,28 @@
       botónAnular.addEventListener("click", anularReserva);
 
       function anularReserva() {
+        //recorremos el array en busca del dni
         for (let reserva of arrayDatos) {
           if (reserva.dni == campoDNI.value) {
+            //almacenamos la posicion en pos
             let pos = arrayDatos.indexOf(reserva);
+            //el splice para cargarnos esa entrada exactamente y luego dejamos libre la sala
             arrayDatos.splice(pos, 1);
+            if (reserva.cocina) {
+              conCocina--;
+            } else {
+              sinCocina--;
+            }
+            //esto para ver que lo hemos logrado y quitamos el error en rojo si lo hubiese
             alert("Reserva borrada con éxito");
-            ocultarError("errorGeneral");
+            quitarError(campoErr, "errorGeneral");
+            //nos salimos de una
             return;
           }
         }
+        //si no ha llegado al return de encontrar el dni pues error
         mostrarError(
+          campoErr,
           "errorGeneral",
           "El DNI introducido no corresponde al de ninguna de nuestras reservas"
         );
@@ -163,20 +191,22 @@
       botónMostrar.addEventListener("click", mostrarReservas);
 
       function mostrarReservas() {
+        //imprimo en pantalla en la cocina ejemplo de if ternario=)
         let span = document.getElementById("reservas");
         span.textContent = "";
         for (let reserva of arrayDatos) {
-          span.textContent +=
+          //uso innerText porq coge los saltos de linea, text content no
+          span.innerText +=
             reserva.nombre +
             " " +
             reserva.dni +
             " " +
             reserva.numPersonas +
             " " +
-            reserva.cocina +
+            (reserva.cocina ? " con cocina" : " sin cocina") +
             " " +
             reserva.numSocio +
-            "|";
+            "\n";
         }
       }
 
@@ -184,80 +214,97 @@
       botónSalir.addEventListener("click", salir);
 
       function salir() {
+        //el cntl+w de toda la vida
         close();
       }
 
       function validarDatos() {
-        let campoNombre = formulario.elements.nombreCompleto;
-        let campoDNI = formulario.elements.dni;
-        let campoPersonas = formulario.elements.numPersonas;
-        let campoCocina = formulario.elements.cocina;
-        let campoNumSocio = formulario.elements.numSocio;
-        if (!campoNombre.value) {
-          mostrarError("nombreCompleto", "Campo obligatorio no introducido");
-          return false;
-        } else {
-          ocultarError("nombreCompleto");
-          let nombreCompleto = campoNombre.value;
-        }
-
-        if (campoDNI.value) {
-          let regExp = /^[0-9]{8}[A-Z]$/;
-          if (regExp.test(campoDNI.value)) {
-            ocultarError("dni");
-            let dni = campoDNI.value;
+        //funcion validadora, le enviamos el elemento input el campo donde se trabaja y la expresion regular
+        //cada validador devuleve o true si esta bien, o un false y el error que toca
+        if (
+          validador(campoNombre, "nombreCompleto", /^[A-Za-z]+/) &&
+          validador(campoDNI, "dni", /^[0-9]{8}[A-Za-z]$/) &&
+          validador(campoPersonas, "numPersonas", /^[0-9]+/) &&
+          validarCapacidad(campoPersonas)
+        ) {
+          // si el campoSocio esta vacio es true, a si que pasa y si tiene texto
+          //es false por lo tanto depende de que el validador sea true
+          //sino seran los 2 false e ira a false
+          if (
+            !campoNumSocio.value ||
+            validador(campoNumSocio, "numSocio", /^[A-Z]{2}[0-9]{3}$/i)
+          ) {
+            //si ha pasado el if comprueba si ha pasado por estar vacio o por estar bien
+            //si esta bien le da su valor y sino lo deja en blanco
+            quitarError(campoNumSocio, "numSocio");
+            if (campoNumSocio.value) {
+              let numSocio = campoNumSocio.value;
+            } else {
+              let numSocio = "";
+            }
           } else {
-            mostrarError("dni", "Formato de DNI no válido");
             return false;
           }
+          //si llega hasta aqui final feliz
+          return true;
         } else {
-          mostrarError("dni", "Campo obligatorio no introducido");
+          //cuando alguno de las condiciones no ha pasado devuelve un false para q no añada el objeto al array
           return false;
         }
-        if (campoPersonas.value) {
-          if (campoPersonas.value > 25) {
+
+        //podriamos haberlo controlado con una expresion regular de kilo y medio
+        //pero creo q asi se ve mas facil
+        function validarCapacidad(campoPersonas) {
+          if (campoPersonas.value < 25) {
+            quitarError(campoPersonas, "numPersonas");
+            return true;
+          } else {
             mostrarError(
+              campoPersonas,
               "numPersonas",
               "Capacidad máxima de la sala sobrepasada"
             );
             return false;
-          } else {
-            ocultarError("numPersonas");
-            let numPersonas = campoPersonas.value;
           }
-        } else {
-          mostrarError("numPersonas", "Campo obligatorio no introducido");
-          return false;
         }
 
-        let regExp = /^[A-Z]{2}[0-9]{3}$/i;
-        if (!campoNumSocio.value || regExp.test(campoNumSocio.value)) {
-          ocultarError("numSocio");
-          if (campoNumSocio.value) {
-            let numSocio = campoNumSocio.value;
+        //recicle del ejercicio3
+        function validador(elemento, campo, expReg) {
+          if (elemento.value) {
+            if (!expReg.test(elemento.value)) {
+              mostrarError(
+                elemento,
+                campo,
+                "Introduzca un formato válido, por favor"
+              );
+              return false;
+            } else {
+              quitarError(elemento, campo);
+              //alert(campo + " correcto");
+              return true;
+            }
           } else {
-            let numSocio = "";
+            mostrarError(elemento, campo, "Campo obligatorio");
+            return false;
           }
-        } else if (!regExp.test(campoNumSocio.value)) {
-          mostrarError(
-            "numSocio",
-            "El número de socio introducido no cumple el formato establecido"
-          );
-          return false;
         }
-        return true;
       }
-
-      function mostrarError(campo, mensaje) {
-        let campoError = document.getElementById(campo);
-        campoError.classList.add("error");
-        campoError.textContent = "⚠ " + mensaje;
+      //reciclaje del ejercicio3
+      function mostrarError(campo, campoError, mensaje) {
+        let error = document.getElementById(campoError);
+        if (campo != null) {
+          if (campo.value) {
+            error.textContent = mensaje + ". Formato:" + campo.placeholder;
+          } else {
+            error.textContent = mensaje;
+          }
+          campo.classList.add("alerta");
+        } else error.textContent = mensaje;
       }
-
-      function ocultarError(campo) {
-        let campoError = document.getElementById(campo);
-        campoError.classList.remove("error");
-        campoError.textContent = "";
+      function quitarError(campo, campoError) {
+        let error = document.getElementById(campoError);
+        error.textContent = "";
+        if (campo != null) campo.classList.remove("alerta");
       }
     </script>
   </body>

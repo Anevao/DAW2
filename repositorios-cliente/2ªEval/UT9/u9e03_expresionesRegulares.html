@@ -122,9 +122,7 @@
           }
 
           //FUNCIONES AUXILIARES (LAS 2 PRIMERAS LAS METO DENTRO DE LA FUNCION SUBMIT
-          //PORQUE USAN EL EVENT Y SINO NO LO RECONOCE)
-          //----------------------LEEMEE---------------------------------------
-          //si quedan ganas modificar la funcion validadora enviandole el evento a ver si asi va fuera de aqui
+          //PORQUE USAN EL EVENT Y SINO NO LO RECONOCE creo)
 
           //funcion validadora, le enviamos el elemento input el campo donde se trabaja y la expresion regular
           function validador(elemento, campo, expReg) {
@@ -142,7 +140,7 @@
               } else {
                 //si llega aqui es que lo ha hecho bien y si hubiese un error lo quita
                 quitarError(elemento, campo);
-                alert(campo + "correcto");
+                //alert(campo + "correcto");
               }
             }
             //si fechacreacion.value es false significa que el campo esta vacio y le pone que rellene el campo
@@ -256,7 +254,6 @@
         };
       }
 
-      //Creación del mensaje de error
       function mostrarError(campo, campoError, mensaje) {
         let error = document.getElementById(campoError);
         if (campo.value) {
@@ -266,7 +263,6 @@
         }
         campo.classList.add("alerta");
       }
-      //Ocultación del error 285
       function quitarError(campo, campoError) {
         let error = document.getElementById(campoError);
         error.textContent = "";

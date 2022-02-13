@@ -1,1 +1,2 @@
-ejercicio1
+ejercicio3
+no se guarda la cookie al cerrar el navegador
