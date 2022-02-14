@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>u10e07Teatro</title>
+    <style>
+        .oculto{
+            visibility: hidden;
+            /*display: none;*/
+        }
+    </style>
+
+  </head>
+  <body>
+    <select id="teatros" ></select>
+    <form id="cartelera" class="oculto">
+        <label for="titulo">Titulo</label>
+        <input name="titulo" type="text" readonly/><br>
+        <label for="precio">Precio</label>
+        <input name="precio" type="text" readonly/><br>
+        <label for="sinopsis">Sinopsis</label>
+        <textarea name="sinopsis" type="text" readonly></textarea><br>
+        <img alt="imagen de la cartelera"></img><br>
+        <button type="primero">Primero</button>
+        <button type="anterior">Anterior</button>
+        <button type="siguiente">Siguiente</button>
+        <button type="ultimo">Ultimo</button><br>
+    </form>
+    <script>
+      let ArrayTeatros;
+      let ArrayCartelera;
+      let selectTeatros = document.getElementById("teatros");
+      selectTeatros.addEventListener("change", listarCartelera)
+      //fichero="./teatros.json";
+      function peticionServer(fichero) {
+        fetch(fichero)
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (text) {
+            ArrayTeatros = JSON.parse(text);
+            generaDesplegable(ArrayTeatros);
+          });
+      }
+      function generaDesplegable(json) {
+        for (let salas of json) {
+          let teatro = document.createElement("option");
+          teatro.textContent = salas.teatro;
+          teatro.value = salas.teatro;
+          selectTeatros.append(teatro);
+        }
+      }
+      function listarCartelera(){
+        fetch("./cartelera.json")
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (text) {
+            ArrayCartelera = JSON.parse(text);
+            mostrarCartelera(ArrayCartelera);
+          });
+      }
+      function mostrarCartelera(ArrayCartelera){
+        
+      }
+      peticionServer("./teatros.json");
+    </script>
+  </body>
+</html>

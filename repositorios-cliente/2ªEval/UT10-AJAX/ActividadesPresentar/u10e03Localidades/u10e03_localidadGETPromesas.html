@@ -21,7 +21,7 @@
       function buscar() {
         //resultado.style.color = "black";
         resultado.textContent = "";
-        let url = "./arraylocalidades.php?localidad=" + localidad.value;
+        let url = "./data/arraylocalidades.php?localidad=" + localidad.value;
         fetch(url)
           .then(function (response) {
             return response.text();
