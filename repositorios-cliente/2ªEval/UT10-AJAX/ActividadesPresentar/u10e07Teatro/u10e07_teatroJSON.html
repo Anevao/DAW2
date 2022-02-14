@@ -24,10 +24,10 @@
           <label for="sinopsis">Sinopsis</label>
           <textarea name="sinopsis" type="text" id="sinopsis" disabled="yes"></textarea><br>
         <img alt="imagen de la cartelera" id="imagen" src=""></img><br>
-        <button id="primero">Primero</button>
-        <button id="anterior">Anterior</button>
-        <button id="siguiente">Siguiente</button>
-        <button id="ultimo">Ultimo</button><br>
+        <button id="primero" onclick="irPrimero()">Primero</button>
+        <button id="anterior" onclick="retrocede()">Anterior</button>
+        <button id="siguiente"onclick="avanza()">Siguiente</button>
+        <button id="ultimo" onclick="irFinal()">Ultimo</button><br>
     </form>
     <script>
       //variables globales, si las meto en las funciones me da algun problema
@@ -35,18 +35,33 @@
       let pos;
       let formulario=document.getElementById("cartelera");
       let selectTeatros = document.getElementById("teatros");
-      selectTeatros.addEventListener("change", listarCartelera);
-      let primero=document.getElementById("primero");
-      let anterior=document.getElementById("anterior");
-      let siguiente=document.getElementById("siguiente");
-      let ultimo=document.getElementById("ultimo");
-      primero =document.addEventListener("click", arrayMovimiento(0));
-      anterior =document.addEventListener("click", arrayMovimiento(pos-1));
-      siguiente =document.addEventListener("click", arrayMovimiento(pos+1));
-      ultimo =document.addEventListener("click", arrayMovimiento(arrayCarteleraDisponible.length));
-      function arrayMovimiento(n){
+      
+      
+      
+      function irPrimero(){
+        pos=0;
+        verArray(pos);
+      }
+
+      function avanza(){
+        pos=pos+1;
+        verArray(pos);
+
+      }
+
+      function retrocede(){
+        
+        pos=pos-1;
+        verArray(pos);
+
+      }
+
+      function irFinal(){
+        pos=arrayCarteleraDisponible.length;
+        verArray(pos);
+      }
+      function verArray(n){
         verTodo();
-        pos=n;
         titulo.textContent=arrayCarteleraDisponible[n].titulo;
         precio.textContent=arrayCarteleraDisponible[n].precio;
         sinopsis.textContent=arrayCarteleraDisponible[n].sinopsis;
@@ -57,8 +72,14 @@
         ocultaBotones("siguiente","ultimo");
       }
       //empezamos a enrredar cuando se carga el DOM
-      document.addEventListener("DOMContentLoaded", peticionServer);
-      //carga los teatros  --------------------------->
+      document.addEventListener("DOMContentLoaded", iniciar);
+
+      function iniciar(){
+        peticionServer();
+        selectTeatros.addEventListener("change", listarCartelera);
+        
+      }
+     
       function peticionServer() {
         fetch("./teatros.json")
           .then(function (response) {
@@ -94,6 +115,14 @@
           .then(function (json) {
             //el json en este caso ya viene parseado y todo el rollo
             mostrarCartelera(json);
+            /*let primero=document.getElementById("primero");
+      let anterior=document.getElementById("anterior");
+      let siguiente=document.getElementById("siguiente");
+      let ultimo=document.getElementById("ultimo");
+      primero =document.addEventListener("click", irPrimero);
+      anterior =document.addEventListener("click", retrocede);
+      siguiente =document.addEventListener("click", avanza);
+      ultimo =document.addEventListener("click", irFinal);*/
           })
           .catch(function (error) {
             alert("Se ha producido un error: " + error.message);
@@ -115,11 +144,7 @@
             
           }
         }
-        titulo.textContent=arrayCarteleraDisponible[0].titulo;
-        precio.textContent=arrayCarteleraDisponible[0].precio;
-        sinopsis.textContent=arrayCarteleraDisponible[0].sinopsis;
-        imagen.setAttribute('src', arrayCarteleraDisponible[0].imagen);
-        ocultaBotones("primero","anterior");
+        verArray(0)
       }
       function ocultaBotones(oculto1, oculto2){
         document.getElementById(oculto1).classList.add("oculto");
