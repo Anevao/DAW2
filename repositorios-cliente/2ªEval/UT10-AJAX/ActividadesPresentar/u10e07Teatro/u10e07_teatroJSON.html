@@ -10,6 +10,7 @@
             visibility: hidden;
             /*display: none;*/
         }
+        
     </style>
 
   </head>
@@ -17,33 +18,60 @@
     <select id="teatros" ></select>
     <form id="cartelera" class="oculto">
         <label for="titulo">Titulo</label>
-        <input name="titulo" type="text" readonly/><br>
+        <input name="titulo" type="text" id="titulo" /><br>
         <label for="precio">Precio</label>
-        <input name="precio" type="text" readonly/><br>
-        <label for="sinopsis">Sinopsis</label>
-        <textarea name="sinopsis" type="text" readonly></textarea><br>
-        <img alt="imagen de la cartelera"></img><br>
-        <button type="primero">Primero</button>
-        <button type="anterior">Anterior</button>
-        <button type="siguiente">Siguiente</button>
-        <button type="ultimo">Ultimo</button><br>
+        <input name="precio" type="text" id="precio" /><br>
+          <label for="sinopsis">Sinopsis</label>
+          <textarea name="sinopsis" type="text" id="sinopsis" disabled="yes"></textarea><br>
+        <img alt="imagen de la cartelera" id="imagen" src=""></img><br>
+        <button id="primero">Primero</button>
+        <button id="anterior">Anterior</button>
+        <button id="siguiente">Siguiente</button>
+        <button id="ultimo">Ultimo</button><br>
     </form>
     <script>
-      let ArrayTeatros;
-      let ArrayCartelera;
+      //variables globales, si las meto en las funciones me da algun problema
+      let arrayCarteleraDisponible=[];
+      let pos;
+      let formulario=document.getElementById("cartelera");
       let selectTeatros = document.getElementById("teatros");
-      selectTeatros.addEventListener("change", listarCartelera)
-      //fichero="./teatros.json";
-      function peticionServer(fichero) {
-        fetch(fichero)
+      selectTeatros.addEventListener("change", listarCartelera);
+      let primero=document.getElementById("primero");
+      let anterior=document.getElementById("anterior");
+      let siguiente=document.getElementById("siguiente");
+      let ultimo=document.getElementById("ultimo");
+      primero =document.addEventListener("click", arrayMovimiento(0));
+      anterior =document.addEventListener("click", arrayMovimiento(pos-1));
+      siguiente =document.addEventListener("click", arrayMovimiento(pos+1));
+      ultimo =document.addEventListener("click", arrayMovimiento(arrayCarteleraDisponible.length));
+      function arrayMovimiento(n){
+        verTodo();
+        pos=n;
+        titulo.textContent=arrayCarteleraDisponible[n].titulo;
+        precio.textContent=arrayCarteleraDisponible[n].precio;
+        sinopsis.textContent=arrayCarteleraDisponible[n].sinopsis;
+        imagen.setAttribute('src', arrayCarteleraDisponible[n].imagen);
+        if(n==0)
+        ocultaBotones("primero","anterior");
+        else if(n==arrayCarteleraDisponible.length)
+        ocultaBotones("siguiente","ultimo");
+      }
+      //empezamos a enrredar cuando se carga el DOM
+      document.addEventListener("DOMContentLoaded", peticionServer);
+      //carga los teatros  --------------------------->
+      function peticionServer() {
+        fetch("./teatros.json")
           .then(function (response) {
             return response.text();
           })
           .then(function (text) {
-            ArrayTeatros = JSON.parse(text);
-            generaDesplegable(ArrayTeatros);
+            arrayTeatros = JSON.parse(text);
+            generaDesplegable(arrayTeatros);
+          }).catch(function (error) {
+            alert("Se ha producido un error: " + error.message);
           });
       }
+    
       function generaDesplegable(json) {
         for (let salas of json) {
           let teatro = document.createElement("option");
@@ -53,19 +81,57 @@
         }
       }
       function listarCartelera(){
+        
+        formulario.classList.remove("oculto");
         fetch("./cartelera.json")
           .then(function (response) {
-            return response.text();
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Se ha producido un fallo al acceder al fichero");
+            }
           })
-          .then(function (text) {
-            ArrayCartelera = JSON.parse(text);
-            mostrarCartelera(ArrayCartelera);
+          .then(function (json) {
+            //el json en este caso ya viene parseado y todo el rollo
+            mostrarCartelera(json);
+          })
+          .catch(function (error) {
+            alert("Se ha producido un error: " + error.message);
           });
       }
-      function mostrarCartelera(ArrayCartelera){
-        
+      function mostrarCartelera(json){
+        //si se van a usar en varios sitos no es mejor globales?
+        let titulo=document.getElementById("titulo");
+        let precio=document.getElementById("precio");
+        let sinopsis=document.getElementById("sinopsis");
+        let imagen=document.getElementById("imagen");
+        arrayCarteleraDisponible=[];
+        pos=0;
+        //alert(selectTeatros.options[selectTeatros.selectedIndex].text)
+        for (let obra of json.obras) {
+          if(selectTeatros.options[selectTeatros.selectedIndex].text==obra.teatro)
+          {
+            arrayCarteleraDisponible.push(obra)
+            
+          }
+        }
+        titulo.textContent=arrayCarteleraDisponible[0].titulo;
+        precio.textContent=arrayCarteleraDisponible[0].precio;
+        sinopsis.textContent=arrayCarteleraDisponible[0].sinopsis;
+        imagen.setAttribute('src', arrayCarteleraDisponible[0].imagen);
+        ocultaBotones("primero","anterior");
       }
-      peticionServer("./teatros.json");
+      function ocultaBotones(oculto1, oculto2){
+        document.getElementById(oculto1).classList.add("oculto");
+        document.getElementById(oculto2).classList.add("oculto");
+      }
+      function verTodo(){
+        document.getElementById("primero").classList.remove("oculto");
+        document.getElementById("anterior").classList.remove("oculto");
+        document.getElementById("siguiente").classList.remove("oculto");
+        document.getElementById("ultimo").classList.remove("oculto");
+      }
+      
     </script>
   </body>
 </html>
