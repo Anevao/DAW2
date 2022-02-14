@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>u10e05_seriesJSONPromesas</title>
+    <link rel="stylesheet" href="./u10e05_.css" />
+  </head>
+  <body>
+    <table id="series"></table>
+    <script>
+      document.addEventListener("DOMContentLoaded", peticionServer);
+      function peticionServer() {
+        fetch("./series.json")
+          .then(function (response) {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Se ha producido un fallo al acceder al fichero");
+            }
+          })
+          .then(function (json) {
+            //el json en este caso ya viene parseado y todo el rollo
+            genera_tabla(json);
+          })
+          .catch(function (error) {
+            alert("Se ha producido un error: " + error.message);
+          });
+      }
+
+      //let obj = JSON.parse(peticionServer("./portafolio.json"));
+      function genera_tabla(obj) {
+        // Obtener la referencia del elemento body
+        let body = document.getElementsByTagName("body")[0];
+
+        // Crea un elemento <table> y un elemento <tbody>
+        let tabla = document.createElement("table");
+        let fila = document.createElement("tr");
+        let celdaTitulo = (document.createElement("td").textContent = "Titulo");
+        let celdaPlat = (document.createElement("td").textContent =
+          "Plataforma");
+        let celdaDirector = (document.createElement("td").textContent =
+          "Director");
+        let celdaAnno = (document.createElement("td").textContent = "Año");
+        let celdaTerminada = (document.createElement("td").textContent =
+          "Terminada?");
+        fila.append(
+          celdaTitulo,
+          celdaPlat,
+          celdaDirector,
+          celdaAnno,
+          celdaTerminada
+        );
+        tabla.append(fila);
+        //celdaTitulo.classList.add("negrita");
+        // celdaDirector.classList.add("cursiva");
+
+        for (let serie of obj.series) {
+          // Crea las hileras de la tabla
+          let ficha = document.createElement("tr");
+          let celdaTitulo = document.createElement("td");
+          celdaTitulo.classList.add("negrita");
+          celdaTitulo.textContent = serie.titulo;
+
+          let celdaPlat = document.createElement("td");
+          celdaPlat.textContent = serie.plataforma;
+
+          let celdaDirector = document.createElement("td");
+          celdaDirector.classList.add("cursiva");
+          celdaDirector.textContent = serie.director;
+
+          let celdaAnno = document.createElement("td");
+          if (serie.año <= 2000) {
+            celdaAnno.classList.add("rojo");
+          } else if (serie.año >= 2011) {
+            celdaAnno.classList.add("verde");
+          } else {
+            celdaAnno.classList.add("amarillo");
+          }
+          celdaAnno.textContent = serie.año;
+
+          let celdaTerminada = document.createElement("td");
+          if (serie.terminada == "si") {
+            celdaTerminada.textContent = "✔";
+          } else {
+            celdaTerminada.textContent = "✘";
+          }
+
+          ficha.append(
+            celdaTitulo,
+            celdaPlat,
+            celdaDirector,
+            celdaAnno,
+            celdaTerminada
+          );
+          tabla.append(ficha);
+        }
+        body.appendChild(tabla);
+        //tabla.setAttribute("border", "2");
+      }
+    </script>
+  </body>
+</html>

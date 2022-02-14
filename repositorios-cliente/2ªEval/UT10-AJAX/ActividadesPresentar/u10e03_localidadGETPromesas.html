@@ -19,7 +19,7 @@
       let busqueda = formulario.elements.buscar;
       busqueda.addEventListener("click", buscar);
       function buscar() {
-        resultado.style.color = "black";
+        //resultado.style.color = "black";
         resultado.textContent = "";
         let url = "./arraylocalidades.php?localidad=" + localidad.value;
         fetch(url)
@@ -29,16 +29,10 @@
           .then(function (text) {
             if (text == "S") {
               resultado.style.color = "green";
-              resultado.textContent =
-                "La ciudad " +
-                localidad.value +
-                " está dentro de los registros disponibles";
+              resultado.textContent = localidad.value + " esta en el registro";
             } else {
               resultado.style.color = "red";
-              resultado.textContent =
-                "La ciudad " +
-                localidad.value +
-                " no está dentro de los registros disponibles";
+              resultado.textContent = localidad.value + " no esta registrada";
             }
           });
       }

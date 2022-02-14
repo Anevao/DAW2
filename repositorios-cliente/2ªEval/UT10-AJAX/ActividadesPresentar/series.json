@@ -1,0 +1,39 @@
+{
+    "series": [
+      {
+        "titulo": "Breaking Bad",
+        "plataforma": "AMC",
+        "director": "Vince Gilligan",
+        "año": 1999,
+        "terminada": "si"
+      },
+      {
+        "titulo": "Rick y morty ",
+        "plataforma": "HBO",
+        "director": "Pete Michels",
+        "año": 2013,
+        "terminada": "no"
+      },
+      {
+        "titulo": "Juego de Tronos",
+        "plataforma": "HBO",
+        "director": "David Benioff",
+        "año": 2011,
+        "terminada": "si"
+      },
+      {
+        "titulo": "The Walking Dead",
+        "plataforma": "HBO",
+        "director": "Frank Darabot",
+        "año": 2010,
+        "terminada": "no"
+      },
+      {
+        "titulo": "Mr Robot",
+        "plataforma": "USA",
+        "director": "Sam Esmail",
+        "año": 2015,
+        "terminada": "si"
+      }
+    ]
+  }

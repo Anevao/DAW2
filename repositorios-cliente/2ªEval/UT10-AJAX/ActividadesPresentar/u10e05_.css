@@ -1,0 +1,24 @@
+table,
+tr,
+td {
+  border: 2px solid black;
+  background-color: grey;
+  border-collapse: collapse;
+}
+
+.negrita {
+  font-weight: bold;
+}
+.cursiva {
+  font-style: italic;
+}
+
+.rojo {
+  color: red;
+}
+.amarillo {
+  color: yellow;
+}
+.verde {
+  color: green;
+}
