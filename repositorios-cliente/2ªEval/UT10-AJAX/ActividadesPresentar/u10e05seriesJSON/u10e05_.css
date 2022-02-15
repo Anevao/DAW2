@@ -5,7 +5,10 @@ td {
   background-color: grey;
   border-collapse: collapse;
 }
-
+tr,
+td {
+  width: 200px;
+}
 .negrita {
   font-weight: bold;
 }

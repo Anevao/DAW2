@@ -36,23 +36,25 @@
 
         // Crea un elemento <table> y un elemento <tbody>
         let tabla = document.createElement("table");
-        let fila = document.createElement("tr");
-        let celdaTitulo = (document.createElement("td").textContent = "Titulo");
-        let celdaPlat = (document.createElement("td").textContent =
-          "Plataforma");
-        let celdaDirector = (document.createElement("td").textContent =
-          "Director");
-        let celdaAnno = (document.createElement("td").textContent = "Año");
-        let celdaTerminada = (document.createElement("td").textContent =
-          "Terminada?");
-        fila.append(
+        let ficha = document.createElement("tr");
+        let celdaTitulo = document.createElement("td");
+        celdaTitulo.textContent = "Titulo";
+        let celdaPlat = document.createElement("td");
+        celdaPlat.textContent = "Plataforma";
+        let celdaDirector = document.createElement("td");
+        celdaDirector.textContent = "Director";
+        let celdaAnno = document.createElement("td");
+        celdaAnno.textContent = "año";
+        let celdaTerminada = document.createElement("td");
+        celdaTerminada.textContent = "terminada?";
+        ficha.append(
           celdaTitulo,
           celdaPlat,
           celdaDirector,
           celdaAnno,
           celdaTerminada
         );
-        tabla.append(fila);
+        tabla.append(ficha);
         //celdaTitulo.classList.add("negrita");
         // celdaDirector.classList.add("cursiva");
 
