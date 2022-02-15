@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid</title>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        margin: 40px;
+        box-sizing: border-box;
+        height: calc(100% - 100px);
+      }
+
+      .wrapper {
+        background-color: #fff;
+        color: #444;
+        display: grid;
+        /* template "lienzo"columnas ocupan 1 de 200 el espacio de 10 y el resto*/
+        grid-template-columns: 200px 10px 1fr;
+        /*tamaño de las filas auto 10 px auto 10px y rellena automaticamente*/
+        grid-template-rows: auto 10px auto 10px auto;
+      }
+
+      .box {
+        background-color: #444;
+        color: #fff;
+        border-radius: 5px;
+        padding: 50px;
+        font-size: 150%;
+      }
+
+      .header {
+        background-color: #999;
+        grid-row-start: 1;
+        grid-column: span 3;
+      }
+      .sidebar {
+        grid-row-start: 3;
+        grid-column: span 1;
+      }
+      .content {
+        grid-row-start: 3;
+        grid-column-start: 3;
+      }
+      .footer {
+        grid-row-start: 5;
+        grid-column: span 3;
+        background-color: #999;
+      }
+    </style>
+  </head>
+  <body class="wrapper">
+    <div class="box header">Header</div>
+    <div class="box sidebar">Sidebar</div>
+    <div class="box content">Content</div>
+    <div class="box footer">Footer</div>
+  </body>
+</html>
