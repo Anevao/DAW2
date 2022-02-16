@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>u10e03_localidadGETPromesas</title>
+    <title>EJEMPLO DE TRABAJO CON SCRIPT PHP Y METODO GET POCHO</title>
   </head>
   <body>
     <form>
@@ -19,14 +19,25 @@
       let busqueda = formulario.elements.buscar;
       busqueda.addEventListener("click", buscar);
       function buscar() {
-        //resultado.style.color = "black";
+        resultado.style.color = "black";
         resultado.textContent = "";
-        let url = "./data/arraylocalidades.php?localidad=" + localidad.value;
+        //en este ejercicio vamos a mandar una variable a pelo con GET
+        let url = "./arraylocalidades.php?localidad=" + localidad.value;
         fetch(url)
           .then(function (response) {
-            return response.text();
+            //controlamos la primera parte del fech por si no encuentra el archivo o lo q sea
+            if (response.ok) {
+              //si mando esto mando un json
+              //return response.json();
+              //si mando esto mando una cadena=)
+              return response.text();
+            } else {
+              throw new Error("Se ha producido un fallo al acceder al fichero");
+            }
           })
           .then(function (text) {
+            // el php devuelve un echo de S o n dependiendo si esta o no
+
             if (text == "S") {
               resultado.style.color = "green";
               resultado.textContent = localidad.value + " esta en el registro";
@@ -34,6 +45,10 @@
               resultado.style.color = "red";
               resultado.textContent = localidad.value + " no esta registrada";
             }
+          })
+          //el error lo tiramos aqui con cuidao
+          .catch(function (error) {
+            alert("Se ha producido un error: " + error.message);
           });
       }
     </script>

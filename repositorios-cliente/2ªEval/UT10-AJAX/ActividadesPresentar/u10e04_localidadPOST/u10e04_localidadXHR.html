@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJEMPLO DE TRABAJO CON SCRIPT PHP Y METODO POST POTENTE</title>
+  </head>
+  <body>
+    <form>
+      Introduzca una localidad: <input type="text" name="localidad" />
+      <div id="resultado"></div>
+      <input type="submit" name="buscar" value="Buscar" />
+    </form>
+    <script>
+      let formulario = document.forms[0];
+      let localidad = formulario.elements.localidad;
+      let resultado = document.getElementById("resultado");
+      //nueva forma con POST y xhr
+      formulario.onsubmit = function (e) {
+        //anula el submit original
+        e.preventDefault();
+
+        let xhr = new XMLHttpRequest();
+        let url = "arraylocalidades.php";
+        //metodo post y el fichero al q vamos
+        xhr.open("POST", url);
+        //carga el formulario en el objeto formdata
+        let formData = new FormData(formulario);
+        xhr.send(formData);
+
+        xhr.onload = function () {
+          if (xhr.status != 200) {
+            alert(`Error ${xhr.status}: ${xhr.statusText}`);
+          } else {
+            //responde nuestro echo como seimpre
+            texto = xhr.response;
+            comprueba(texto);
+          }
+        };
+      };
+      function comprueba(text) {
+        // el php devuelve un echo de S o n dependiendo si esta o no
+        resultado.style.color = "black";
+        resultado.textContent = "";
+        if (text == "S") {
+          resultado.style.color = "green";
+          resultado.textContent = localidad.value + " esta en el registro";
+        } else {
+          resultado.style.color = "red";
+          resultado.textContent = localidad.value + " no esta registrada";
+        }
+      }
+    </script>
+  </body>
+</html>

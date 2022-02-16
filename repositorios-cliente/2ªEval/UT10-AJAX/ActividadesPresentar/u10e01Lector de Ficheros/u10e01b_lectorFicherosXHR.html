@@ -25,14 +25,19 @@
 
         function mostrarContenido() {
           let areaTexto = document.getElementById("visualizado");
+          //creamos objeto xmlHttpReq
           let xhr = new XMLHttpRequest();
+          //abrimos el objeto metodo get y enviamos lo q hay en el input(la url)
           xhr.open("GET", url.value);
+          // si utlizasemos post metemos aqui lo q mandemos
           xhr.send();
 
           xhr.onload = function () {
+            //status 200 = OK readyState 4 = que esta lista
             if (xhr.status != 200) {
               alert("Error " + xhr.status + ": " + xhr.statusText);
             } else {
+              //si esta ok, el xhr.response es el json o el texto q hayamos ido a buscar
               let texto = xhr.response;
               areaTexto.value = texto;
             }

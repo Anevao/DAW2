@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RECUPERANDO UN JSON DEL SERVIDOR</title>
+  </head>
+  <body>
+    <script>
+      let fichero = "./portafolio.json";
+      let xhr = new XMLHttpRequest();
+
+      xhr.open("GET", fichero);
+
+      xhr.responseType = "json";
+
+      xhr.send();
+
+      xhr.onload = function () {
+        if (xhr.status != 200) {
+          alert(`Error ${xhr.status}: ${xhr.statusText}`);
+        } else {
+          objeto = xhr.response;
+          genera_tabla(objeto.fechas);
+        }
+      };
+      xhr.onerror = function () {
+        alert(`Error de red`);
+      };
+      function genera_tabla(obj) {
+        // Obtener la referencia del elemento body
+        let body = document.getElementsByTagName("body")[0];
+
+        // Crea un elemento <table> y una primera fila con tituls
+        let tabla = document.createElement("table");
+
+        let fila = document.createElement("tr");
+        let titulo = document.createElement("td");
+        titulo.textContent = "Titulo";
+        let fecha = document.createElement("td");
+        fecha.textContent = "Fecha";
+        let texto = document.createElement("td");
+        texto.textContent = "Mentiras";
+
+        fila.append(titulo, fecha, texto);
+        tabla.append(fila);
+
+        //ojo cuidao error: llamar a "entrada" fechas, se hace un lio si hay otro fechas en los datos
+        for (let entrada of obj) {
+          let nuevaFila = document.createElement("tr");
+          let titulo = document.createElement("td");
+          let fecha = document.createElement("td");
+          let texto = document.createElement("td");
+
+          titulo.innerHTML = entrada.titulo;
+          fecha.innerHTML = entrada.fecha;
+          texto.innerHTML = entrada.texto;
+
+          nuevaFila.append(titulo, fecha, texto);
+
+          tabla.append(nuevaFila);
+        }
+
+        // enchufa <table> into <body>
+        body.appendChild(tabla);
+        // modifica el atributo "border" de la tabla y lo fija a "2";
+        tabla.setAttribute("border", "2");
+      }
+    </script>
+  </body>
+</html>
