@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>u10e06Billetes</title>
+    <style>
+      table,
+      td {
+        border: 2px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td><h1>origen</h1></td>
+        <td><h1>destino</h1></td>
+      </tr>
+      <tr>
+        <form>
+          <td><select id="origen"></select></td>
+          <td><select id="destino"></select></td>
+        </form>
+      </tr>
+    </table>
+    <script>
+      let selectOrigen = document.getElementById("origen");
+
+      let arrayViajes = [];
+      document.addEventListener("DOMContentLoaded", inicio);
+      function inicio() {
+        peticionServer();
+
+        selectOrigen.addEventListener("change", verDestinos);
+      }
+
+      function peticionServer() {
+        fetch("./viajes.json")
+          .then(function (response) {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Se ha producido un fallo al acceder al fichero");
+            }
+          })
+          .then(function (json) {
+            //alert(json);
+            generaDesplegable(json.viajes);
+            //borramelistarCartelera();
+          })
+          .catch(function (error) {
+            alert("Se ha producido un error: " + error.message);
+          });
+      }
+      function verDestinos() {
+        //declaro aqui o global?
+        let selectDestino = document.getElementById("destino");
+        selectDestino.innerHTML = "";
+        for (let destino of arrayViajes[selectOrigen.selectedIndex]) {
+          let opDestino = document.createElement("option");
+          opDestino.textContent = destino;
+          opDestino.value = destino;
+          selectDestino.append(opDestino);
+        }
+      }
+      function generaDesplegable(json) {
+        for (let viaje of json) {
+          let opOrigen = document.createElement("option");
+          opOrigen.textContent = viaje.origen;
+          opOrigen.value = viaje.origen;
+          selectOrigen.append(opOrigen);
+          arrayViajes.push(viaje.destino);
+        }
+      }
+    </script>
+  </body>
+</html>
