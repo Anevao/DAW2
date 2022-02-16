@@ -15,5 +15,10 @@ class Conexion
             die("la conexion no ha sido posible".$e->getMessage());
             
         }
-    }
+    }//fin de construc
+//metodo magico
+public function __get($atrib){
+   return ($this->$atrib)
 }
+
+}//fin clase
