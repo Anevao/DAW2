@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Libros</title>
+  </head>
+  <body>
+    <table align="center" border="1">
+      <tr>
+        <th colspan="4">ELIGE LA OPERACION A REALIZAR</th>
+      </tr>
+      <tr>
+        <td>
+          <!--este action manda el submit a  ese fichero por porst-->
+          <form action="./insertar.html" method="post">
+            <input type="submit" name="i_libros" value="INSERTAR" />
+          </form>
+        </td>
+        <td>
+          <form action="./borrar.html" method="post">
+            <input type="submit" name="b_libros" value="BORRAR" />
+          </form>
+        </td>
+        <td>
+          <form action="./modificar.html" method="post">
+            <input type="submit" name="m_libros" value="MODIFICAR" />
+          </form>
+        </td>
+        <td>
+          <form action="./vista/salir.php" method="post">
+            <input type="submit" name="salir" value="salir" />
+          </form>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
