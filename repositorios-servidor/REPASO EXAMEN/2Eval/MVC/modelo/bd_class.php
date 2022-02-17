@@ -1,4 +1,5 @@
 <?php
+//objeto conexion construye un objeto mysqli con localhost nombre de usuario de la bd y pass
 class Conexion
 {
 

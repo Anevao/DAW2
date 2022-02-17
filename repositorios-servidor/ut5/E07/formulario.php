@@ -1,7 +1,9 @@
 <?php
+
 if (isset($_POST['enviar']))
 	{
-	 if (isset($_POST["test"]))
+		//con una serie de ifs del averno va rellenando un array de 2 posis
+	 if ((isset($_POST["test"]) && ($_POST["examen"]))){
 		if ($_POST["test"]=="realizado")
 			$datos[0]="realizado";
 		else
@@ -11,9 +13,14 @@ if (isset($_POST['enviar']))
 			$datos[1]="realizado";
 		else
 			$datos[1]="norealizado";
+			//al contrario que el explode esto hace de un array un string
 		$valorcookie=implode("-",$datos);
 		setcookie("actividades", $valorcookie, time() + 300);
+		//aqui viene el mensaje de los coyons para q no sigas tocando
 	 die("fin de la aplicación");	
+	 }
+	 else
+	 echo "faltan datos maifren";
 	 }	
 ?>
 <!DOCTYPE html>
@@ -39,5 +46,6 @@ if (isset($_POST['enviar']))
 		<br><br>
 		<input type="submit" name="enviar" >
 	</form> 	
+
 </body> 
 </html>

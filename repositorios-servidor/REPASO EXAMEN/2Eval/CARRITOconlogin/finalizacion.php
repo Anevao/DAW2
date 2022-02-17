@@ -68,12 +68,16 @@
         $tpparcial = 0;
         $tpeparcial = 0;
         $tmparcial = 0;
+        //totalplatanos
         $tp = 0;
+        //totalmanzanas
         $tm = 0;
+        //totalperas
         $tpe = 0;
         $prod =    $_COOKIE['productosel'];
         $unid =   $_COOKIE["unidadessel"];
 
+        //haec un array con todos los productos y sus unidades
         $prods = explode(",", $prod);
         $unids = explode(",", $unid);
 
@@ -88,9 +92,12 @@
             if ($prods[$i] == "Peras") {
                 $tpe = $tpe + ($unids[$i] * 1.40);
             }
+            //crea fila
             echo '<tr>';
+            //añade celda con producta y otra con unidades
             echo '<td>' . $prods[$i] . '</td>';
             echo '<td>' . $unids[$i] . '</td>';
+            //ultima celda con la multiplicacion
             if ($prods[$i] == "Platanos") {
                 $tpparcial = ($unids[$i] * 1.50);
                 echo '<td>' .  $tpparcial . '€</td>';
@@ -103,10 +110,13 @@
                 $tpeparcial =  ($unids[$i] * 1.40);
                 echo '<td>' .  $tpeparcial . '€</td>';
             }
+            //acaba la fila
             echo '</tr>';
         }
+        //calcula el total sumando todo lo mete en una cokie nueva
         $total = $tp + $tm + $tpe;
         setcookie('totalprod', $total, time() + 160);
+        //fila con 2 celdas vacia y la ultiam el total, asi lo posiciona debajo del precio
         echo '<tr>';
         echo '<td></td>';
         echo '<td></td>';

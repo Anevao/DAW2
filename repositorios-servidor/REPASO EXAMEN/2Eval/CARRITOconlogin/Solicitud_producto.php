@@ -1,15 +1,18 @@
 <?php
 
 
-
+//submit=continuar
 if (isset($_POST['continuar'])) {
+    //si no hay cookie la crea y le pone el producto
     if (!isset($_COOKIE['productosel'])) {
         setcookie('productosel', $_POST['producto'], time() + 160);
     } else {
+        // si hay pues coge y lee añade con una coma a la ya existente
         $prod = $_COOKIE['productosel'];
         $prod .=  "," . $_POST['producto'];
         setcookie('productosel', $prod, time() + 160);
     }
+    //lo mismo con las unidades
     if (!isset($_COOKIE['unidadessel'])) {
         setcookie('unidadessel', $_POST['unidades'], time() + 160);
     } else {
