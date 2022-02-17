@@ -9,11 +9,12 @@
 </head>
 
 <body>
+    <!--manda lo elegido a controlador actor-->
     <form action="../controlador/control_actor.php" method="post">
         <label for="naci">Elige una Nacionalidad:</label>
         <select name="nacionalidad" id="naci">
             <?php
-
+            //le llega este dato k es una array de nacionalidades
             foreach ($datos as $clave => $valor)
                 echo '<option value=' . $valor . '>' . $valor . '</option>';
             ?>

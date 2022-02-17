@@ -7,6 +7,7 @@ class Actor
     }
     public function query_nombre_actrices($conect)
     {
+        //query que devuelve el nombre de la tabla actores de sexo femenenino
         $sql = "SELECT nombre_apellidos FROM actores WHERE sexo='f'";
 
         $resultado = $conect->query($sql);
@@ -19,6 +20,7 @@ class Actor
 
     public function query_nacionalidades($conect)
     {
+        //devuelve las distintas nacionalidadse sin reptir
         $sql = "Select DISTINCT nacionalidad from actores";
         $resultado = $conect->query($sql);
         $result = "";
@@ -27,6 +29,7 @@ class Actor
         }
         return $result;
     }
+    //consulta cuantos actores hay de la nacionalidad k se le manda desde vista elegir_nacionalidad
     public function query_nacionalizados($conect)
     {
         $nacionalidad = $_POST['nacionalidad'];

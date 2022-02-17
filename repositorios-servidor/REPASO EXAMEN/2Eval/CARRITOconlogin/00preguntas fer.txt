@@ -1,6 +1,8 @@
 primeros pasos para crear una bd y como saber si esta bien
 xk pone los values con MAYUSCULAS
-
+explode separa un strings en array separados por el simbolo
 bdclas.php es una incognita para mi
 
-model_class_peliculas tiene par de dudas
+model_class_peliculas tiene par de dudasz
+
+Ejercicio completo con inserciones y demas dramas

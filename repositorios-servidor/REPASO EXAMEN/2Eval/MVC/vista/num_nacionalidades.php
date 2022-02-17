@@ -14,6 +14,7 @@
     </h1>
 
     <?php
+    //recibe la nacionalidad desde elegir_nacionalidad y el result desde control_Actor
     $nacionalidad = $_POST['nacionalidad'];
     if ($result == 1) {
         echo "Hay " . $result . " actor de nacionalidad $nacionalidad." . '<br>';
