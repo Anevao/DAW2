@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJERCICIO2 EXAMEN</title>
+  </head>
+  <body>
+    <h1>Alumno matriculados en un modulo</h1>
+    <select id="selector"></select>
+
+    <table id="tabla">
+      <tr>
+        <td>NIF</td>
+        <td>Nombre</td>
+        <td>curso</td>
+      </tr>
+    </table>
+    <div id="div"></div>
+    <script>
+      let arrayAlumnos = [];
+      document.addEventListener("DOMContentLoaded", iniciar);
+
+      function iniciar() {
+        let selector = document.getElementById("selector");
+        DosPuntoUnoSelect();
+        DosPuntoUnoCargaArray();
+
+        selector.addEventListener("change", dosPuntoDos);
+      }
+      function DosPuntoUnoSelect() {
+        let fichero = "modulos.json";
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("GET", fichero);
+
+        xhr.responseType = "json";
+
+        xhr.send();
+
+        xhr.onload = function () {
+          if (xhr.status != 200) {
+            alert(`Error ${xhr.status}: ${xhr.statusText}`);
+          } else {
+            generaDesplegable(xhr.response);
+          }
+        };
+        xhr.onerror = function () {
+          alert(`Error de red`);
+        };
+      }
+      function generaDesplegable(json) {
+        for (let modulos of json) {
+          let opcionModulo = document.createElement("option");
+          opcionModulo.textContent = modulos;
+          opcionModulo.value = modulos;
+          selector.append(opcionModulo);
+        }
+      }
+      function DosPuntoUnoCargaArray() {
+        let fichero = "alumnos.json";
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("GET", fichero);
+
+        xhr.responseType = "json";
+
+        xhr.send();
+
+        xhr.onload = function () {
+          if (xhr.status != 200) {
+            alert(`Error ${xhr.status}: ${xhr.statusText}`);
+          } else {
+            //obj = new Object(xhr.response);
+            //alert(obj);
+            arrayAlumnos.push(xhr.response);
+            dosPuntoDos();
+            //alert("array alumnos se ha cargadpo");
+          }
+        };
+        xhr.onerror = function () {
+          alert(`Error de red`);
+        };
+      }
+      function dosPuntoDos() {
+        let tabla = document.getElementById("tabla");
+        tabla.innerHTML = "";
+        for (let alumno of arrayAlumnos[0]) {
+          if (alumno.modulo == selector.value) {
+            let fila = document.createElement("tr");
+            fila.setAttribute("id", alumno.NIF);
+            let celdaNif = document.createElement("td");
+            celdaNif.textContent = alumno.NIF;
+            let celdaNombre = document.createElement("td");
+            celdaNombre.textContent = alumno.nombre;
+            let celdaCurso = document.createElement("td");
+            celdaCurso.textContent = alumno.curso;
+            let celdaBotones = document.createElement("td");
+            let botonAnular = document.createElement("button");
+            botonAnular.setAttribute("type", "button");
+            botonAnular.setAttribute("name", "borrar");
+            botonAnular.textContent = "anular matricula";
+            //botonAnular.setAttribute("id", alumno.NIF);
+            //botonAnular.addEventListener("click", borrar);
+            let botonVer = document.createElement("button");
+            botonVer.setAttribute("type", "button");
+            botonVer.setAttribute("name", "ver");
+            botonVer.textContent = "ver datos";
+            //botonVer.addEventListener("click", dosPuntoCuatro);
+            celdaBotones.append(botonAnular, botonVer);
+            fila.append(celdaNif, celdaNombre, celdaCurso, celdaBotones);
+            tabla.append(fila);
+          }
+        }
+        function dosPuntoCuatro() {}
+      }
+    </script>
+  </body>
+</html>
