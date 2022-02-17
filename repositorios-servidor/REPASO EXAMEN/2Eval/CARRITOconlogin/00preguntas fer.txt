@@ -1,0 +1,3 @@
+que pasa si el action esta vacio
+xk pone los values con MAYUSCULAS
+explode separa un strings en array separados por el simbolo
