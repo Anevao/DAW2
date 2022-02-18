@@ -31,7 +31,11 @@ switch ($_POST['consulta']) {
         require_once("../vista/nombres_actrices.php");
         break;
     case '3':
+<<<<<<< HEAD
         //'3' => 'Actores de una Nacionalidad',
+=======
+        //añade el modelo clase actores q tiene las funcoines de consulta
+>>>>>>> ffb1df86d10563d0772dc491515fa9c63c5ba081
         require_once("../modelo/model_class_actores.php");
         $actor = new Actor();
         //devuelve las distintas nacionalidads de los actores
