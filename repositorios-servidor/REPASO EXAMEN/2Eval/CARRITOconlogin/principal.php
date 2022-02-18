@@ -1,4 +1,6 @@
 <?php
+//para esto era el puto usuactual recoge la cookie una vez te has logueado 
+//y saca el usuario actual a ver ahora para q es el 0
 $usuactual = explode("-", $_COOKIE["usuarioactual"]);
 echo "<p>Sesion de " . $usuactual[0] . " </p>";
 
@@ -69,7 +71,7 @@ echo "<p>Sesion de " . $usuactual[0] . " </p>";
 </head>
 
 <body>
-    <h1>Fruteria de Iván</h1>
+    <h1>Fruteria</h1>
     <table>
         <tr>
             <td><b>Plátanos</b></td>
@@ -87,6 +89,7 @@ echo "<p>Sesion de " . $usuactual[0] . " </p>";
             <td>1,40</td>
         </tr>
     </table>
+    <!--te manda pa solucitud producto-->
     <a href="Solicitud_producto.php">Solicitud de producto</a>
 </body>
 

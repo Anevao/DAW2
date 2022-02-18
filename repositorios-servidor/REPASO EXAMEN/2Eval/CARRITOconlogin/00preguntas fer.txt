@@ -1,0 +1,6 @@
+primeros pasos para crear una bd y como saber si esta bien
+xk pone los values con MAYUSCULAS
+
+bdclas.php es una incognita para mi
+
+model_class_peliculas tiene par de dudas

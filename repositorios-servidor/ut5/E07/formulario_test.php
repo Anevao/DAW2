@@ -4,11 +4,17 @@ if (isset($_POST['enviar']))
 		if (isset($_POST['test']))
 			if ($_POST["test"]=="realizado")
 					{
+
 					$datos=explode("-",$_COOKIE['actividades']);
 					$datos[0]="realizado";
 					$valorcookie=implode("-",$datos);
 					setcookie("actividades", $valorcookie, time() + 300);	
-					}
+					}/*else{
+					$datos=explode("-",$_COOKIE['actividades']);
+					$datos[0]="norealizado";
+					$valorcookie=implode("-",$datos);
+					setcookie("actividades", $valorcookie, time() + 300);	
+					}*/
 		die("fin de la aplicación");
 		}	
 ?>
