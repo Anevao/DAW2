@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pagina principal</title>
+  </head>
+
+  <body>
+    <table align="center" border="1">
+      <tr>
+        <th colspan="3">OPOSICIONES</th>
+      </tr>
+      <tr>
+        <td>
+          <!--este action manda el submit a  ese fichero por porst-->
+          <form action="./vista/consulta.html" method="post">
+            <input type="submit" name="consulta" value="CONSULTA" />
+          </form>
+        </td>
+        <td>
+          <form action="./vista/insertar.html" method="post">
+            <input type="submit" name="consulta" value="INSERTAR" />
+          </form>
+        </td>
+        <td>
+          <form action="./vista/borrar.html" method="post">
+            <input type="submit" name="consulta" value="BORRAR" />
+          </form>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
