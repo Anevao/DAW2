@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PE2-Ejercicio 4</title>
+    <link rel="stylesheet" href="css/estilos4.css" />
+    <style>
+      /* Solución ejercicio 4 */
+      p {
+        animation: aparece 7s linear;
+        position: absolute;
+        top: 60%;
+        left: 40%;
+      }
+      p:hover {
+        font-size: 80px;
+        transition-duration: 4s;
+        transition-timing-function: steps(4);
+      }
+      .nube {
+        position: absolute;
+        top: 0;
+
+        opacity: 0, 8;
+      }
+      #nube1 {
+        left: 45%;
+        animation: nube 3s linear;
+      }
+      #nube2 {
+        right: 45%;
+        animation: nube1 3s linear;
+      }
+      @keyframes nube {
+        0% {
+          transform: translate(170%, 0);
+        }
+        33% {
+          transform: translate(00%, 0);
+        }
+        66% {
+          transform: translate(170%, 0);
+        }
+        100% {
+          transform: translate(0%, 0);
+        }
+      }
+      @keyframes nube1 {
+        0% {
+          transform: translate(-170%, 0);
+        }
+        33% {
+          transform: translate(00%, 0);
+        }
+        66% {
+          transform: translate(-170%, 0);
+        }
+        100% {
+          transform: translate(0%, 0);
+        }
+      }
+      @keyframes aparece {
+        0% {
+          opacity: 0;
+        }
+        43% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="contenedor">
+      <img id="catedral" src="pictures/catedral.jpg" alt="Catedral de Burgos" />
+      <img class="nube" id="nube1" src="pictures/nube.png" alt="nube 1" />
+      <img class="nube" id="nube2" src="pictures/nube.png" alt="nube 2" />
+      <p>Mín.-12ºC</p>
+    </div>
+  </body>
+</html>

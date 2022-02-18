@@ -15,7 +15,7 @@ else
 			echo "Bienvenido";
 			$usu=new Usuario ($_POST['usuario'],$_POST['clave']);
 			$usu=serialize($usu);
-			setcookie('login',$usu,time()+60);
+			setcookie('login',$usu,time()+600);
 			}
 		else
 			echo "Acceso denegado. Las credenciales no son correctas";
