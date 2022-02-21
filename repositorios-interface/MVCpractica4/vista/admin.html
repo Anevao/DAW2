@@ -1,15 +1,3 @@
-<?php
-	if (isset($_POST['enviar']))
-		{
-		if ($_POST['usuario']=='admin')
-			{
-        header ("location: admin.html");
-			}
-		else
-      header ("location: usuario.html");
-		exit;
-		}
-?>	
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PRACTICA4</title>
     <style>
-      :hover, :focus {
-        border: 2px solid blue;
-      }
       body {
         display: grid;
         grid-template:
           "header" 20%
-          "main" auto
           "nav" 20%
+          "main" auto
           "footer" 10%;
         align-items: center;
       }
       header {
         grid-area: header;
       }
-
+      :hover,
+      :focus {
+        border: 2px solid blue;
+      }
       nav {
         grid-area: nav;
       }
@@ -66,7 +54,7 @@
       nav,
       main,
       footer {
-        padding: 10p;
+        padding: 1em;
       }
       /* Header y footer */
       header,
@@ -107,19 +95,16 @@
   <body>
     <header>
       <h1>
-        <img
-          id="juanDeColonia"
-          src="./source/jc.png"
-          alt="Logo del centro juan de colonia"
-        />CIFP Juan de Colonia
+        <img id="juanDeColonia" src=url("./source/jc.png") alt="Logo del centro
+        juan de colonia" />CIFP Juan de Colonia
       </h1>
     </header>
     <nav>
       <ul>
-        <li><a href="#">La academia</a></li>
-        <li><a href="#">Bailes</a></li>
-        <li><a href="#">Horarios</a></li>
-        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Calificar examenes</a></li>
+        <li><a href="#">Introducir trabajos</a></li>
+        <li><a href="#">Introducir notas</a></li>
+        <li><a href="#">Logout</a></li>
       </ul>
     </nav>
     <main>
@@ -142,7 +127,14 @@
       <form action="" method="post" border="2">
         <legend>formulario de conexion con la plataforma</legend>
         <!--tenemos un formulario con el action hacia "" osease se queda aqui -->
-        Usuario: <input type="text" name="usuario" placeholder="introduzca usuario(user o admin)" required/> Contraseña:
+        <label for="usuario">Usuario:</label>
+        <input
+          type="text"
+          name="usuario"
+          placeholder="introduzca usuario(user o admin)"
+          required
+        />
+        <label for="clave">Contraseña:</label>
         <input type="password" name="clave" required />
         <!--el submit coge los input y los envia coge el name como valor de refe y el value como su valor -->
         <input type="submit" name="enviar" value="LOGIN" />
