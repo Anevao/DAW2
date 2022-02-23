@@ -3,10 +3,10 @@
 		{
 		if ($_POST['usuario']=='admin')
 			{
-        header ("location: admin.html");
+        header ("location: ./vista/admin.html");
 			}
 		else
-      header ("location: usuario.html");
+      header ("location: ./vista/alumno.html");
 		exit;
 		}
 ?>	
@@ -18,6 +18,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PRACTICA4</title>
     <style>
+      @font-face {
+        font-family: "news";
+        font-style: normal;
+        font-weight: 1200;
+        src: url("../source/News.otf"); 
+      }
       :hover, :focus {
         border: 2px solid blue;
       }
@@ -26,7 +32,6 @@
         grid-template:
           "header" 20%
           "main" auto
-          "nav" 20%
           "footer" 10%;
         align-items: center;
       }
@@ -47,11 +52,12 @@
       }
       @media screen {
         body {
+          /*height: 100%;*/
           grid-template:
-            "header  header " 300px
-            "nav     main  " 100%
-            "footer  footer " 150px /
-            20% auto;
+            "header " 300px
+            " main  " 100%
+            " footer " 150px /
+            100%;
         }
       }
       * {
@@ -62,45 +68,30 @@
         height: 80px;
         object-fit: contain;
       }
-      header,
-      nav,
-      main,
-      footer {
-        padding: 10p;
-      }
+      
       /* Header y footer */
       header,
       footer {
-        font-family: "Comic Sans MS", sans-serif, fantasy;
+        font-family: "news",sans-serif, fantasy;
         background-color: #80cfff;
-      }
-      /* Barra de navegación */
-      nav ul {
-        list-style-type: none;
-      }
-      nav li {
-        width: 100%;
-        background-color: white;
-        text-align: left;
-        border: 1px solid black;
-        margin-bottom: 1em;
-      }
-      nav a {
-        text-decoration: none;
-        color: lightslategray;
-      }
-      nav a:hover,
-      nav a:focus {
-        color: black;
       }
       /* Main */
       main {
+        font-family: "news", sans-serif, fantasy;
         border: 5px ridge lightgray;
+        /*background-image: url("./source/centro2.jpg");
+        object-fit: cover;
+        opacity: 0,5;*/
       }
       /* Footer */
       footer p {
         text-align: center;
         margin-top: 50px;
+      }
+      form{
+        border: 3px solid grey;
+        display: flex;
+      flex-direction: column;
       }
     </style>
   </head>
@@ -133,8 +124,8 @@
           >
         </li>
         <li>
-          ¡ENHORABUENA A LA CLASE DE DAW 2!Hemos sido ganadores del premio a la
-          originalidad en diseño 2022 otrogado por la FAE
+          ¡ENHORABUENA A LA CLASE DE DAW 2!Hemos sido <span>ganadores del premio a la
+          originalidad</span> en diseño 2022 otrogado por la FAE
           <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0">Accede</a>
         </li>
       </ul>
