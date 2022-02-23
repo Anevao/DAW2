@@ -88,6 +88,16 @@
       }
       
       }
+      @media print {
+       main form, nav, #tituloForm 
+       {
+          display: none;
+       }
+    }
+        
+      
+      
+      
       img {
         height: 40px;
         object-fit: contain;
@@ -98,9 +108,7 @@
         font-family: "news",sans-serif, fantasy;
         background-color: #80cfff;
       }
-      h1{
-        font-size: larger;
-      }
+     
       nav,footer {
         height: 100px;
         font-family: "news",sans-serif, fantasy;
@@ -157,7 +165,7 @@
           <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0">Accede</a>
         </li>
       </ul>
-      <h2>Acceso al aula virtual.</h2>
+      <h2 id="tituloForm">Acceso al aula virtual.</h2>
       <form action="" method="post" border="2">
         <legend>Formulario de conexion con la plataforma</legend>
         <!--tenemos un formulario con el action hacia "" osease se queda aqui -->
