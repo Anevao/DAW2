@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PRACTICA4</title>
+    <title>PARTE ADMINISTRADOR</title>
     <style>
       body {
         display: grid;
@@ -37,12 +37,63 @@
         body {
           grid-template:
             "header  header " 300px
-            "nav     main  " 100%
+            "main    main  " 100%
             "footer  footer " 150px /
             20% auto;
         }
       }
+
+      /* Estilos para el ícono del Menú */
+      .icono-menu {
+        margin: 40px 50px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .icono-menu img {
+        vertical-align: top;
+        width: 40px;
+        cursor: pointer;
+      }
+
+      /* Estilos para el contenedor del Menú */
+      .cont-menu {
+        background-color: rgb(42, 42, 42);
+        box-shadow: 2px 0px 5px 2px rgb(66, 66, 66);
+        width: 400px;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.5s ease;
+      }
+
+      /* Estilos por agregar en JavaScript */
+      .active {
+        transform: translate(-600px);
+      }
+
+      /* Estilos para el listado del Menú */
+      .cont-menu ul {
+        padding: 100px 0px 20px 0px;
+        list-style: none;
+      }
+
+      .cont-menu ul li {
+        color: white;
+        display: block;
+        font-size: 25px;
+        text-decoration: none;
+        padding: 10px 50px;
+        cursor: pointer;
+      }
+
+      .cont-menu ul li:hover {
+        background-color: rgb(228, 228, 228);
+        color: rgb(36, 34, 70);
+      }
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
@@ -51,8 +102,6 @@
         object-fit: contain;
       }
       header,
-      nav,
-      main,
       footer {
         padding: 1em;
       }
@@ -62,25 +111,11 @@
         font-family: "Comic Sans MS", sans-serif, fantasy;
         background-color: #80cfff;
       }
-      /* Barra de navegación */
-      nav ul {
-        list-style-type: none;
-      }
-      nav li {
-        width: 100%;
-        background-color: white;
-        text-align: left;
-        border: 1px solid black;
-        margin-bottom: 1em;
-      }
-      nav a {
-        text-decoration: none;
-        color: lightslategray;
-      }
+      /*
       nav a:hover,
       nav a:focus {
         color: black;
-      }
+      }*/
       /* Main */
       main {
         border: 5px ridge lightgray;
@@ -95,53 +130,84 @@
   <body>
     <header>
       <h1>
-        <img id="juanDeColonia" src=url("./source/jc.png") alt="Logo del centro
-        juan de colonia" />CIFP Juan de Colonia
+        <img
+          id="juanDeColonia"
+          src="../source/jc.png"
+          alt="Logo del centro
+        juan de colonia"
+        />CIFP Juan de Colonia
       </h1>
     </header>
-    <nav>
-      <ul>
-        <li><a href="#">Calificar examenes</a></li>
-        <li><a href="#">Introducir trabajos</a></li>
-        <li><a href="#">Introducir notas</a></li>
-        <li><a href="#">Logout</a></li>
-      </ul>
-    </nav>
     <main>
-      <h2>Noticias</h2>
-      <ul>
-        <li>
-          Abrimos el plazo de matriculacion para el 2022-2023
-          <a
-            href="http://cifpjuandecolonia.centros.educa.jcyl.es/sitio/index.cgi?wid_seccion=20"
-            >mas info en este enlace</a
-          >
-        </li>
-        <li>
-          ¡ENHORABUENA A LA CLASE DE DAW 2!Hemos sido ganadores del premio a la
-          originalidad en diseño 2022 otrogado por la FAE
-          <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0">Accede</a>
-        </li>
-      </ul>
-      <h2>Acceso al aula virtual.</h2>
-      <form action="" method="post" border="2">
-        <legend>formulario de conexion con la plataforma</legend>
-        <!--tenemos un formulario con el action hacia "" osease se queda aqui -->
-        <label for="usuario">Usuario:</label>
-        <input
-          type="text"
-          name="usuario"
-          placeholder="introduzca usuario(user o admin)"
-          required
-        />
-        <label for="clave">Contraseña:</label>
-        <input type="password" name="clave" required />
-        <!--el submit coge los input y los envia coge el name como valor de refe y el value como su valor -->
-        <input type="submit" name="enviar" value="LOGIN" />
+      <div class="icono-menu">
+        <img src="img/open-menu.png" id="icono-menu" />
+      </div>
+
+      <div class="cont-menu active" id="menu">
+        <ul>
+          <li id="examenes">Calificar examenes</li>
+          <li id="trabajos">Introducir trabajos</li>
+          <li id="notas">Introducir notas</li>
+          <li id="salir">Logout</li>
+        </ul>
+      </div>
+      <h1>Bienvenido Oscar Garcia crespo</h1><br>
+      <h2>Seleccione la materia de la que desea calificar los examenes</h2><br>
+      <form id="formCalificacion">
+        <legend>Formulario standard de calificacion</legend><br>
+        <label for="asignaturas">Seleccione una asignatura</label><br>
+        <select name="asignaturas" id="selecAsig">
+            <!-- todo vendria enlazado con una bd, las asignaturas que tienes asignadas, los alumnos que teines en cada asignatura etc...-->
+            <option value="null" selected>Seleccione una asignatura</option>
+            <option name="IW" value="IW">Interfaces web</option>
+            
+            <option name="brico" value="Bricolaje">Tecnicas de bricolaje aplicadas</option>
+            <option name="html"value="HTML">HTML</option>
+            <option name="css" value="CSS">CSS</option>
+        </select><br>
+        <span id="errAsignatura"></span><br>
+        <label for="alumnos">Seleccione un alumno</label><br>
+        <select name="alumnos" id="selecAsig">
+                    <option value="null" selected>Seleccione un alumno</option>
+            <option name="alumno1" value="112">Alberto Nevado</option>
+            
+            <option name="alumno2" value="123">Fernando Santamaria</option>
+            <option name="alumno3"value="321">Robert Rosiak</option>
+          <option name="alumno4" value="212">Ivan Marcos</option>
+        </select><br>
+        <span id="errAlumno"></span><br>
+        </label> 
+        <label for="codExamen">Introduzaca codigo de identificacion del examen</label><br>
+        <input type="text" name="codExamen" id="codExamen" placeholder="IW2324512" required><br>
+        <span id="errCodExamen"></span><br>
+        <label for="notaExamen">Introduzaca la nota del examen que ha sacado el alumno</label><br>
+        <input type="number" name="notaExamen" id="notaExamen" placeholder="de 0 a 10" required><br>
+        <span id="errnotaExamen"></span><br>
+        <input type="submit" name="enviar" value="Enviar" id="botonEnviar" />
       </form>
     </main>
+
     <footer>
       <p>&copy; Juan de Colonia 2021</p>
     </footer>
+    <script>
+      const iconoMenu = document.querySelector("#icono-menu"),
+        menu = document.querySelector("#menu");
+
+      iconoMenu.addEventListener("click", (e) => {
+        // Alternamos estilos para el menu y body
+        menu.classList.toggle("active");
+        document.body.classList.toggle("opacity");
+
+        // Alternamos su atributo 'src' para el ícono del menú
+        const rutaActual = e.target.getAttribute("src");
+
+        if (rutaActual == "source/open-menu.png") {
+          e.target.setAttribute("src", "../source/open-menu2.png");
+        } else {
+          e.target.setAttribute("src", "../source/open-menu.png");
+        }
+      });
+    </script>
   </body>
 </html>
